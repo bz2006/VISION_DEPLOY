@@ -11,12 +11,14 @@ import usersRoute from "./routes/usersRoute.js"
 import cartRoute from "./routes/cartRoute.js"
 import OrderRoutes from "./routes/orderRoute.js"
 import path from "path"
-
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
-const _dirname = path.dirname("")
-const buildPath = path.join(_dirname  , "./client/build");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const buildPath = path.join(__dirname  , "./client/build");
 
 const app = express()//express
 connectdb();//Database
