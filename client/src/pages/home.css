@@ -1,0 +1,46 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+
+    .cardbtn {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    .model {
+        font-size: medium;
+        font-weight: 700;
+
+    }
+
+    .price {
+        margin-top: -5px;
+        font-size: large;
+        font-weight: 700;
+
+    }
+
+    .responsive {
+        width: 100%;
+        height: auto;
+    }
+
+    .responsive1 {
+        display: none;
+
+    }
+}
+
+/* --------------------------------------Small Screen----------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    .responsive {
+        display: none;
+    }
+
+    .responsive1 {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+
+}

@@ -1,0 +1,124 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+
+
+    .brimg {
+        height: 50px;
+        margin-left: 10px;
+    }
+
+
+
+    .homm {
+        color: black;
+    }
+
+    .hom {
+        color: black;
+    }
+
+    .bg-body-tertiary {
+        background-color: black;
+    }
+
+    .head {
+        align-items: center;
+
+    }
+
+    .bg-body-tertiary {
+        height: 80px;
+    }
+
+
+    .dropmenu {
+        height: 130px;
+        width: 300px;
+        margin-left: -150px;
+
+
+
+        .lrrbtn {
+
+            margin-top: 50px;
+            width: 115px;
+            height: 50px;
+            margin-left: 20px;
+            margin-right: 5px;
+            border-radius: 15px;
+            color: white;
+            border-color: rgb(10, 72, 51);
+            background-color: rgb(10, 72, 51);
+        }
+    }
+
+    .drop {
+        margin-left: 50px;
+    }
+
+    .drop2 {
+        height: 145px;
+        width: 200px;
+        margin-left: -70px;
+    }
+
+    .hddiv {
+        display: flex;
+        padding-left: 500px;
+        align-content: space-between;
+    }
+
+    .mobhead {
+        display: none;
+    }
+    .nav-menu{
+        display: none;
+    }
+}
+
+/* --------------------------------------Small Screen----------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    .pcheader {
+        display: none;
+    }
+
+    .mobhead {
+        display: block;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        height: 70px;
+        padding: 20px;
+    }
+
+    .mobbrimg {
+        margin-left: 20px;
+        width: 40%;
+    }
+
+    .brimg {
+        height: 50px;
+        margin-left: 5px;
+    }
+
+    .nav-menu {
+        padding: 15px;
+        width: 80%;
+        height: 100vh;
+        background-color: #ffffff;
+        position: fixed;
+        top: 0;
+        left: -80%;
+        transition: left 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+    .mobnav{
+        text-decoration: none;
+        font-size: 25px;
+        color: rgb(0, 0, 0);
+    }
+
+}

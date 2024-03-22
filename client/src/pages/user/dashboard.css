@@ -1,0 +1,37 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+
+
+    .btns {
+        width: 400px;
+        height: 100px;
+        background-color: white;
+        display: inline-block;
+        vertical-align: middle;
+        padding: 10px;
+        border: 1px solid rgb(178, 178, 178);
+
+    }
+
+    .btns:hover {
+        box-shadow: 0 0 0 2px rgb(234, 234, 234);
+    }
+
+    .column {
+        padding-right: 30px;
+        padding-left: 10px;
+    }
+
+    .column2 {
+        font-family: "Rubik", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+    }
+
+    .trbtn {
+        width: 160px;
+        border-radius: 8px;
+        border: 1px solid rgb(2, 160, 2);
+        color: white;
+        background-color: rgb(2, 160, 2);
+    }
+}

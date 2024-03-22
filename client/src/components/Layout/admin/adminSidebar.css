@@ -1,0 +1,77 @@
+
+/* Set the height of the div to 100% and width to 500px */
+.sidebar {
+    min-height: 100vh;
+    height: auto;
+    width: 230px;
+    padding: 0%;
+    margin: 0;
+    overflow-y: auto;
+    background-color: rgb(19, 23, 32);
+}
+
+.ul {
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    width: 100%;
+
+}
+
+.li {
+    display: block;
+    padding: 8px 16px;
+    width: 100%;
+
+
+}
+
+.li:hover {
+    background-color: rgb(66, 69, 76);
+    color: white;
+}
+.subli{
+    display: block;
+    padding: 8px 16px;
+    background-color: rgb(66, 69, 76);
+    
+}
+.subli:hover {
+    background-color: rgb(8, 15, 32);
+    color: white;
+    border-radius: 10px;
+}
+
+.a {
+    color: white;
+    font-size: 20px;
+
+}
+
+.cont {
+    margin-left: 500px;
+}
+
+.spdrop {
+    color: black;
+    width: 100%;
+}
+/* Add this to your existing CSS */
+
+.submenu {
+    display: none;
+    width: 100%;
+    top: 0;
+    padding: 0;
+    margin: 0; 
+}
+
+.li:hover .submenu {
+    display: block;
+}
+
+.submenu li:hover {
+    background-color: rgb(49, 54, 63);
+    color: white;
+    
+}

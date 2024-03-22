@@ -1,0 +1,134 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+    .body {
+        background-color: rgb(236, 239, 243);
+    }
+.ctdiv{
+    margin: 30px;
+}
+    .delcart {
+        position: relative;
+        cursor: pointer;
+        font-size: small;
+
+    }
+
+    .delcart:hover {
+        color: rgb(194, 0, 0);
+    }
+
+    .buybtn {
+        height: 50px;
+        width: 250px;
+        color: white;
+        border-radius: 15px;
+        margin-bottom: 50px;
+        font-family: Arial, sans-serif;
+        background-color: rgb(0, 172, 0);
+        border-color: rgb(0, 172, 0);
+    }
+
+    .btndiv {
+        text-align: right;
+        margin-top: 30px;
+        margin-right: 10px;
+    }
+
+    .ckot {
+        height: 300px;
+        width: 300px;
+        background-color: white;
+        border-radius: 15px;
+    }
+
+    .ors {
+        padding-left: 10px;
+
+        padding-top: 13px;
+        font-size: larger;
+    }
+
+    .sbt {
+        font-size: large;
+    }
+
+    .cartcrd {
+        display: none;
+    }
+
+    .cremty {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        padding-bottom: 80px;
+    }
+}
+/* -------------------------------------------------Small screen ---------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    .mobcart {
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    .cartcrd {
+        margin-bottom: 10px;
+        height: 200px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+    }
+
+    #card {
+        border-color: rgb(255, 255, 255);
+        border-radius: 10px;
+    }
+
+    .ctdiv {
+        display: none;
+    }
+
+    .foot {
+        display: flex;
+        align-items: center;
+        margin-left: 38%;
+    }
+
+    .card-img {
+        margin: 10px;
+        width: 130px;
+        height: 130px;
+    }
+
+    .selqty {
+        padding-left: 30px;
+        width: 80px;
+        margin-left: 20px;
+        border-radius: 5px;
+        height: 30px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: rgb(231, 231, 231);
+        border: 1px solid rgb(202, 202, 202);
+    }
+
+    .delcartm {
+        margin-left: 20px;
+        background-color: rgb(231, 231, 231);
+        color: rgb(0, 0, 0);
+        border-radius: 5px;
+        height: 30px;
+        width: 80px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgb(202, 202, 202);
+    }
+
+    .card-body {
+        margin-top: 25px;
+    }
+    .cremty {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        padding-bottom: 80px;
+    }
+}

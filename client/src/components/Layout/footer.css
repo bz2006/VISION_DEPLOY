@@ -1,0 +1,31 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+
+    .cont1 {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .one{
+        padding-top: 32px;
+    }
+
+}
+
+/* --------------------------------------Small Screen----------------------------------------------- */
+@media screen and (max-width: 600px) {
+
+    .cont1 {
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: larger;
+
+    }
+    .one{
+        padding-top: 32px;
+    }
+
+
+}

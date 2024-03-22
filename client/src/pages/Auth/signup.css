@@ -1,0 +1,162 @@
+@media screen and (min-width: 801px) and (max-width: 2000px) {
+    .video-bg {
+        position: fixed;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+    }
+
+    .mdivs {
+
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        width: 420px;
+        height: 550px;
+        border-radius: 20px;
+
+
+        position: absolute;
+        right: 0;
+        margin-right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+
+
+    }
+
+    .mdiv {
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        width: 420px;
+        height: 500px;
+        border-radius: 20px;
+
+
+        position: absolute;
+        right: 0;
+        margin-right: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+
+    }
+
+    .frm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .txt {
+        margin-top: 30px;
+        color: black;
+        margin-bottom: 10px;
+        font-size: xx-large;
+    }
+
+    .one {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    .two {
+        margin-bottom: 40px;
+    }
+
+    .twos {
+        margin-bottom: 20px;
+    }
+
+    .three {
+        margin-bottom: 30px;
+    }
+
+    .subbtn {
+        width: 60%;
+        height: 40px;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .form-control {
+        width: 300px;
+    }
+
+    .divi {
+        width: 300px;
+        margin-top: 25px;
+        color: black;
+    }
+
+}
+
+/* --------------------------------------Small Screen----------------------------------------------- */
+@media screen and (max-width: 800px) {
+
+    .video-bg {
+        display: none;
+    }
+
+    .mdiv {
+        color: rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        width: 400px;
+        height: 500px;
+        border-radius: 20px;
+
+
+
+    }
+
+    .frm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .txt {
+        margin-top: 30px;
+        color: black;
+        margin-bottom: 10px;
+        font-size: xx-large;
+    }
+
+    .one {
+        margin-top: 15px;
+        margin-bottom: 20px;
+    }
+
+    .two {
+        margin-bottom: 40px;
+    }
+
+    .twos {
+        margin-bottom: 20px;
+    }
+
+    .three {
+        margin-bottom: 30px;
+    }
+
+    .subbtn {
+        width: 60%;
+        height: 40px;
+        background-color: black;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .form-control {
+        width: 300px;
+    }
+
+    .divi {
+        width: 300px;
+        margin-top: 25px;
+        color: black;
+    }
+
+
+}
