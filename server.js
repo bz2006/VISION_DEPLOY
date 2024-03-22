@@ -16,10 +16,9 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const buildPath = path.join(__dirname  , "./client/build");
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express()//express
 connectdb();//Database
 
@@ -32,27 +31,22 @@ app.use(express.urlencoded({extended: true}));
 
 app.use("/api/v1/auth",authRoute)
 app.use("/api/v1/category", categoryRoute);
-app.use(express.static('public'));
 app.use("/api/v1/product", productRoute);
 app.use("/api/v1/cart", cartRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/razorpay", razorpayRoutes); 
 app.use("/api/v1/orders", OrderRoutes); 
 
-app.get("/*", function(req, res){
+app.use(express.static('./client/build'));
+app.use(express.static('public'));
 
-  res.sendFile(
-      path.join(__dirname, "./client/build/index.html"),
-      function (err) {
-        if (err) {
-          res.status(500).send(err);
-        }
-      }
-    );
 
-})
+// Serve the React frontend
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+});
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log('****Server Started on '+process.env. DEV_MODE +" Mode PORT:"+ PORT+"****")
 })
