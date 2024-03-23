@@ -27,7 +27,7 @@ import Checkout from "./pages/user/checkout"
 import OrderDetails from "./pages/Admin/orderDetails";
 
 var hosturl = window.location.protocol + "//" + window.location.host
-axios.defaults.baseURL = hosturl
+axios.defaults.baseURL = "http://13.201.77.178"
 axios.defaults.withCredentials = true
 
 
