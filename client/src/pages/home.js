@@ -16,7 +16,7 @@ function HomePage() {
             <>
 
                 <Image  src="https://static.wixstatic.com/media/c1ec53_be8960ac122345d59d16a1aaa2853c31~mv2.webp" className="responsive" />
-                 <Image  src={hosturl+"home_logo_2p.png"} className="responsive1"  />
+                 <Image  src={hosturl+"home_logo_2.png"} className="responsive1"  />
             </>
             <pre>{JSON.stringify(auth, null, 4)}</pre>
 
