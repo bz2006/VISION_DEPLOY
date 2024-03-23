@@ -10,7 +10,7 @@ import productRoute from "./routes/productRoute.js"
 import usersRoute from "./routes/usersRoute.js"
 import cartRoute from "./routes/cartRoute.js"
 import OrderRoutes from "./routes/orderRoute.js"
-import path from "path"
+import path from "path";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -36,8 +36,7 @@ app.use("/api/v1/cart", cartRoute);
 app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/razorpay", razorpayRoutes); 
 app.use("/api/v1/orders", OrderRoutes); 
-
-app.use(express.static('./client/build'));
+app.use(express.static(path.join(__dirname, "client/build")))
 app.use(express.static('public'));
 
 
