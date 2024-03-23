@@ -26,7 +26,8 @@ import CartPage from "./pages/cartPage";
 import Checkout from "./pages/user/checkout"
 import OrderDetails from "./pages/Admin/orderDetails";
 
-axios.defaults.baseURL = "http://localhost:3000"
+var hosturl = window.location.protocol + "//" + window.location.host
+axios.defaults.baseURL = hosturl
 axios.defaults.withCredentials = true
 
 
