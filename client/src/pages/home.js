@@ -10,16 +10,13 @@ import "./home.css"
 
 function HomePage() {
     const [auth] = useAuth()
-    var mainUrl = window.location.protocol + "//" + window.location.host;
-
-    // Log the main URL to the console
-    console.log("Main URL: " + mainUrl);
+    var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
     return (
         <Layout>
             <>
 
                 <Image  src="https://static.wixstatic.com/media/c1ec53_be8960ac122345d59d16a1aaa2853c31~mv2.webp" className="responsive" />
-                 <Image  src="http://localhost:3000/uploads/home_logo_2p.png" className="responsive1"  />
+                 <Image  src={hosturl+"home_logo_2p.png"} className="responsive1"  />
             </>
             <pre>{JSON.stringify(auth, null, 4)}</pre>
 
