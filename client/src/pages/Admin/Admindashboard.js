@@ -5,6 +5,7 @@ import "./Admindashboard.css"
 
 
 const Admindashboard = () => {
+  var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
   return (
     <body className='body'>
       <div className="container-fluid ">
@@ -15,7 +16,7 @@ const Admindashboard = () => {
 
           <div className="col-md-3">
             <div>
-              <img src='http://localhost:3000/uploads/Screenshot_(41).png' style={{width:"1020px"}}></img>
+              <img src={hosturl+"Screenshot_(41).png"} style={{width:"1020px"}}></img>
             </div>
           </div>
         </div>

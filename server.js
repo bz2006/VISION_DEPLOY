@@ -37,7 +37,7 @@ app.use("/api/v1/users", usersRoute);
 app.use("/api/v1/razorpay", razorpayRoutes); 
 app.use("/api/v1/orders", OrderRoutes); 
 app.use(express.static(path.join(__dirname, "client/build")))
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'client', 'public')));
 
 
 // Serve the React frontend

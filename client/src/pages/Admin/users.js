@@ -73,7 +73,7 @@ const Users = () => {
                   <tbody>
                     {users.length > 0 && users.map(user => (
                       <tr key={user._id}>
-                        {/* <td><img src={`http://localhost:3000/uploads/${product.images[0]}`} alt="" style={{ height: "60px" }}></img></td> */}
+                       
                         <td>{user.username}</td>
                         <td>{user.email}</td>
                         <td>{user.ordersNo === 0 ? 'No Orders Placed' : user.ordersNo+" Orders"}</td>
