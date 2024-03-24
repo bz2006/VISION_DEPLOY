@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/cart';
@@ -38,15 +39,26 @@ const Header = () => {
   return (
     <>
       <div className='mobhead'>
+
         <FontAwesomeIcon icon={faBars} size='2xl' onClick={showSidebar} />
         <img src="https://static.wixstatic.com/media/c1ec53_cdb43083bb05441ca9fb28a5027a7306~mv2.webp" onClick={() => { navigate("/") }} className='mobbrimg'></img>
-        <FontAwesomeIcon icon={faCartShopping} onClick={() => { navigate("cart") }} size='2xl' style={{ float: "right" }} />
+        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center",marginTop:"-27px" }}>
+          {!auth.user ?(<a href='login' style={{textDecoration:"none",fontSize:"large"}}>Log In</a>):(<FontAwesomeIcon icon={faUser} size='xl' onClick={()=>{navigate("/dashboard/my_account")}} />)}
+          <FontAwesomeIcon icon={faCartShopping} onClick={() => { navigate("/cart") }} size='xl'style={{marginLeft:"25px"}} />
+        </div>
       </div>
+      {/* Side Nav */}
       <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <FontAwesomeIcon icon={faXmark} onClick={closeSidebar} size='2x' color='black' style={{float:"right"}}/>
-        <a herf="/"className='mobnav' >Home</a><br/>
-        <a herf="about"className='mobnav'>Who Are We</a><br/>
-        <a herf="contactus"className='mobnav'>Contact Us</a>
+        <FontAwesomeIcon icon={faXmark} onClick={closeSidebar} size='2x' color='black' style={{ float: "right" }} />
+        {!auth.user ? (<a href='login' style={{textDecoration:"none",fontSize:"larger"}}>Log In</a>) : (<h3>Hi, {auth.user.username}</h3>)}
+        <div className='navigators'>
+          <a onClick={() => { closeSidebar(); navigate("/") }} className='mobnav'>Home</a><br />
+          <a onClick={() => { closeSidebar(); navigate("/shop") }} className='mobnav' >Shop</a><br />
+          <a onClick={() => { closeSidebar(); navigate("/shop") }} className='mobnav' >Category</a><br />
+          <a onClick={() => { closeSidebar(); navigate("/about") }} className='mobnav' >Who Are We</a><br />
+          <a onClick={() => { closeSidebar(); navigate("/contactus") }} className='mobnav'>Contact Us</a><br/>
+          {!auth.user ? (<hr/>) : (<a onClick={handleLogout} className='mobnav'>Log Out</a>)}
+        </div>
 
       </div>
       <div className='pcheader'>

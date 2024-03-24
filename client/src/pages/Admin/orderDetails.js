@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import AdminSidebar from '../../components/Layout/admin/adminSidebar'
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import AdminSidebar from '../../components/Layout/admin/adminSidebar'
+import AdminHeader from '../../components/Layout/admin/adminheader'
 import axios from "axios";
 import Col from 'react-bootstrap/Col'; import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
-import AdminHeader from '../../components/Layout/admin/adminheader'
 import "./Admindashboard.css"
 
 
@@ -20,7 +20,7 @@ const OrderDetails = () => {
   const params = useParams();
 
 
-  const getSingleProduct = async () => {
+  const getSingleOrder = async () => {
     try {
       const singleorder = await axios.get(`/api/v1/orders/order/${params.id}`);
       setOrder(singleorder.data);
@@ -50,7 +50,7 @@ const OrderDetails = () => {
   }
 
   useEffect(() => {
-    getSingleProduct(params.id);
+    getSingleOrder(params.id);
 
   }, []);
   useEffect(() => {
