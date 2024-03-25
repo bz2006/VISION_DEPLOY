@@ -20,11 +20,11 @@
         height: 50px;
         width: 250px;
         color: white;
-        border-radius: 15px;
+        border-radius: 10px;
         margin-bottom: 50px;
         font-family: Arial, sans-serif;
-        background-color: rgb(0, 172, 0);
-        border-color: rgb(0, 172, 0);
+        background-color: rgb(0, 80, 87);
+        border: 1px solid rgb(0, 80, 87);
     }
 
     .btndiv {
@@ -61,6 +61,9 @@
         margin-right: auto;
         width: 50%;
         padding-bottom: 80px;
+    }
+    .mbtndiv{
+        display: none;
     }
 }
 /* -------------------------------------------------Small screen ---------------------------------------------- */
@@ -130,5 +133,18 @@
         margin-right: auto;
         width: 50%;
         padding-bottom: 80px;
+    }
+    .mbuybtn {
+        height: 50px;
+        width: 100%;
+        color: white;
+        border-radius: 10px;
+        font-family:Rubik;
+        background-color: rgb(0, 80, 87);
+        border: 1px solid rgb(0, 80, 87);
+    }
+
+    .mbtndiv {
+        padding: 20px;
     }
 }

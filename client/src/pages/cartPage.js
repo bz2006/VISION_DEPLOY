@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import "./cartPage.css"
 
 function CartPage() {
-    var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
+    var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
 
     const [cart, setCart] = useCart([])
     const [auth, setAuth] = useAuth()
@@ -25,16 +25,16 @@ function CartPage() {
 
 
 
-    const handleDelete = async(productId) => {
+    const handleDelete = async (productId) => {
         const updatedCart = cart.filter(item => item[0] !== productId);
         setCart(updatedCart);
         if (auth.user) {
-            
+
             if (updatedCart.length === 0) {
                 await axios.delete(`/api/v1/cart//delete-cart/${auth.user._id}`);
                 syncCartWithServer(updatedCart)
             }
-            else if(cart.length===0) {
+            else if (cart.length === 0) {
                 getCart()
             }
         }
@@ -85,14 +85,14 @@ function CartPage() {
         }
     };
 
-    const HandleCheckout = async()=>{
+    const HandleCheckout = async () => {
         if (auth.user) {
             navigate("/order/checkout-order")
         }
-        else{
+        else {
             sessionStorage.setItem("redirectUrl", window.location.pathname);
             navigate("/login")
-            
+
         }
     }
     return (
@@ -117,7 +117,7 @@ function CartPage() {
                                             {cart.length > 0 && cart.map(cartItem => (
                                                 <tr key={cartItem[0]}>
                                                     {console.log(cartItem[0])}
-                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={hosturl+cartItem[2][0]} alt="" style={{ width: "90px" }}></img></td>
+                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={hosturl + cartItem[2][0]} alt="" style={{ width: "90px" }}></img></td>
                                                     <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}>{cartItem[1]}</td>
                                                     <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><input
                                                         type="number"
@@ -136,7 +136,7 @@ function CartPage() {
                                                             setCart(updatedCart);
                                                         }}
                                                     /></td>
-                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", fontWeight: "bold", backgroundColor: "white", paddingTop: "38px" }}>₹{cartItem[3] * cartItem[4]}.00  <br /> <a className="delcart"  onClick={() => {
+                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", fontWeight: "bold", backgroundColor: "white", paddingTop: "38px" }}>₹{cartItem[3] * cartItem[4]}.00  <br /> <a className="delcart" onClick={() => {
                                                         handleDelete(cartItem[0]);
                                                     }} >Delete</a></td>
 
@@ -163,10 +163,13 @@ function CartPage() {
                             </div>
                         </div>
                         <div className="mobcart">
+                            <div className="mbtndiv">
+                                <button className="mbuybtn" onClick={HandleCheckout}>Procced To Buy</button>
+                            </div>
                             {cart.length > 0 && cart.map(cartItem => (
                                 <div className="cartcrd" key={cartItem[0]}>
                                     <div className="card flex-row" id="card">
-                                        <img className="card-img" src={hosturl+cartItem[2][0]} />
+                                        <img className="card-img" src={hosturl + cartItem[2][0]} />
                                         <div className="card-body">
                                             <h4 className="card-title h5 h4-sm">{cartItem[1]}</h4>
                                             <h6 className="card-text">₹{cartItem[3]}</h6>

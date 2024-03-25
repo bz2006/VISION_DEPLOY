@@ -97,6 +97,55 @@ const ProductPage = () => {
                 </Row>
 
             </div>
+
+            <div className="spdiv">
+                <h1>hai</h1>
+                <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">
+                    <Col className="colone">
+                        <img src={hosturl+selectedImage} alt="" style={{ width: "80%" }}></img>
+                        <div className="grid">
+                            {images.map((image, index) => (
+                                <div key={index} className="simg" >
+                                        <img
+                                            src={hosturl+image}
+                                            alt=""
+                                            className="cimg"
+                                            // style={{ width: "50%" ,border: "1px solid black"}}
+                                            onClick={() => setSelectedImage(image)} // Update selected image on click
+                                        />
+                                   
+                                </div>
+                            ))}
+                        </div>
+                    </Col>
+                    <Col className="coltwo">
+                        <h2 className="modln">{name}</h2>
+                        <h3 className="mmrp">₹{mrp}.00</h3>
+                        <label className="mrlabel">Sales Tax Included</label><br />
+                        <label className="qtylabel">Quantity</label>
+                        <input
+                            type="number"
+                            min={1}
+                            defaultValue={1}
+                            className="qty"
+                            style={{ display: "block" }}
+                            onChange={(e) => {
+                                const newQuantity = parseInt(e.target.value); // Parse the value to an integer
+                                setQuantity(newQuantity);
+                            }}
+                        />
+                        <button className="addtc" onClick={() => {
+                            const finalqty = [pid, name, images, mrp, Quantity];
+                            setCart([...cart, finalqty]);
+                        }}>Add to Cart</button><br />
+                        <button className="buy">Buy Now</button>
+                    </Col>
+                </Row>
+                <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">
+                    <pre className="descpre">{description}</pre>
+                </Row>
+
+            </div>
         </Layout>
     );
 }

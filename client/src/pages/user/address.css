@@ -1,31 +1,79 @@
-.adrsmdiv{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+
+    .adrsmdiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .adrsdiv {
+        border: 1.5px solid rgb(220, 220, 220);
+        width: 280px;
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 7px;
+    }
+
+    .adbtn {
+        color: rgb(23, 166, 254);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btncol {
+        min-width: max-content;
+    }
+
+    .adrsbtn {
+        width: 300px;
+        height: 230px;
+        border-style: dashed;
+        border: 2px dashed rgb(208, 208, 208);
+        background-color: white;
+        border-radius: 7px;
+    }
+    .mobadrsmdiv{
+        display: none;
+    }
 }
 
-.adrsdiv{
-    border: 1.5px solid rgb(220, 220, 220);
-    width: 280px;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 7px;
-}
+@media screen and (max-width: 600px) {
 
-.adbtn{
-    color: rgb(23, 166, 254);
-    text-decoration: none;
-    cursor: pointer;
-}
+    .adrsmdiv{
+        display: none;
+    }
+    .mobadrsmdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .adrsdiv {
+        border: 1.5px solid rgb(220, 220, 220);
+        min-width: 300px;
+        padding: 10px;
+        margin-right: 10px;
+        border-radius: 7px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-.btncol{
-    min-width: max-content;
-}
-.adrsbtn{
-    width: 300px;
-    height: 230px;
-    border-style:dashed;
-    border: 2px dashed rgb(208, 208, 208);
-    background-color: white;
-    border-radius: 7px;
+    .adbtn {
+        color: rgb(23, 166, 254);
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btncol {
+        min-width: max-content;
+    }
+
+    .adrsbtn {
+        width: 300px;
+        height: 130px;
+        border-style: dashed;
+        border: 2px dashed rgb(208, 208, 208);
+        background-color: white;
+        border-radius: 7px;
+    }
 }
