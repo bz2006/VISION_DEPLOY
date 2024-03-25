@@ -14,7 +14,7 @@
 
   },
   "keywords": [],
-  "author": "",
+  "author": "bz",
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.11.3",
