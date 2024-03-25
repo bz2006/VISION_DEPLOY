@@ -78,6 +78,9 @@ body {
         height: 50px;
         width: 80%;
     }
+    .spdiv{
+        display: none;
+    }
 }
 
 
@@ -85,12 +88,18 @@ body {
     .shcard{
         width: 380px;
     }
+    .pdiv{
+        display: none;
+    }
     .grid{
         display: grid;
         margin-top: 20px;
         grid-template-columns: repeat(5,80px);
         grid-auto-rows: 80px;
         column-gap: 1rem;
+        display: flex;
+        padding: 20px;
+        justify-content: center;
     }
     .cimg{
         width:50%;
@@ -102,10 +111,6 @@ body {
     }
     .cimg:hover{
         box-shadow: 0 0 0 2px rgb(227, 227, 227);
-    }
-    .pdiv {
-        margin-top: 40px;
-        display: block;
     }
 
     .colone {
@@ -180,7 +185,7 @@ body {
     }
 
     .descpre {
-        font-family: Arial, sans-serif;
+        font-family: Rubik;
         font-size: 14px;
         line-height: 1.6;
         align-self: flex-start;

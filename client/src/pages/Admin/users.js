@@ -73,10 +73,9 @@ const Users = () => {
                   <tbody>
                     {users.length > 0 && users.map(user => (
                       <tr key={user._id}>
-                       
                         <td>{user.username}</td>
                         <td>{user.email}</td>
-                        <td>{user.ordersNo === 0 ? 'No Orders Placed' : user.ordersNo+" Orders"}</td>
+                        <td>{user.ordersNo === 0 ? 'No Orders Placed' : user.ordersNo + " Orders"}</td>
                         <td>{user.createdAt}</td>
                       </tr>
                     ))}

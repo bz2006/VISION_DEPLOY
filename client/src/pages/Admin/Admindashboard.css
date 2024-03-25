@@ -352,17 +352,17 @@ th {
 
 .delpr:hover {
     color: red
-    
-    
 }
-.orderow{
+
+.orderow {
     cursor: pointer;
 }
-.orderow:hover{
+
+.orderow:hover {
     background-color: rgb(241, 241, 241);
 }
 
-.statusdiv{
+.statusdiv {
     width: max-content;
     padding: 20px;
     background-color: white;

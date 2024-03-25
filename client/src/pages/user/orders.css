@@ -1,0 +1,94 @@
+@media screen and (min-width: 601px) and (max-width: 2000px) {
+    .moborders {
+        display: none;
+    }
+
+    .moborddetails {
+        display: none;
+    }
+
+    .codiv {
+        margin: 20px;
+        margin-left: 40px;
+    }
+
+    .ordcol1 {
+        border: 1px solid rgb(187, 187, 187);
+        box-shadow: 0 0 0 2px rgb(247, 247, 247);
+        width: 70%;
+        height: 250px;
+        padding: 20p;
+        border-radius: 5px;
+    }
+
+    .ordcol2 {
+        border: 1px solid rgb(187, 187, 187);
+        box-shadow: 0 0 0 2px rgb(247, 247, 247);
+        border-radius: 5px;
+        width: 26.5%;
+        padding: 20px;
+        font-family: Rubik;
+
+        height: 250px;
+        margin-left: 20px;
+    }
+
+    .ordcol3 {
+        margin-top: 45px;
+        border-radius: 5px;
+        border: 1px solid rgb(187, 187, 187);
+        width: 70%;
+        box-shadow: 0 0 0 2px rgb(247, 247, 247);
+        min-height: 100px;
+        overflow: hidden;
+
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .orders {
+        display: none;
+    }
+
+    .orddetails {
+        display: none;
+    }
+
+    .moborders {
+        padding: 10px;
+    }
+
+    .orddiv {
+        border: 1px solid rgb(232, 232, 232);
+        margin: 20px;
+        border-radius: 8px;
+    }
+
+    .ordiv {
+        padding: 20px;
+    }
+
+    .orddet {
+        padding: 20px;
+        margin: 20px;
+        border: 1px solid rgb(232, 232, 232);
+        border-radius: 10px;
+    }
+
+    .userstatusdiv {
+        min-width: 300px;
+        max-width: max-content;
+        padding: 20px;
+        background-color: white;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px solid rgb(232, 232, 232);
+    }
+
+    .ordadrsdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -92,7 +92,7 @@
 
     .mobbrimg {
         margin-left: 20px;
-        width: 40%;
+        width: 30%;
     }
 
     .brimg {
@@ -119,6 +119,10 @@
         text-decoration: none;
         font-size: 25px;
         color: rgb(0, 0, 0);
+        display: block;
+    }
+    .navigators{
+        margin-top: 35px;
     }
 
 }
