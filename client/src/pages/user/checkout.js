@@ -53,6 +53,7 @@ const Checkout = () => {
                 handleShowship()
             }
 
+
         } catch (error) {
             toast.error("something went wrong");
 
@@ -213,9 +214,10 @@ const Checkout = () => {
                     <Col className='col1'>
                         <div style={{ display: "inline-block" }}>
                             <h6 style={{ marginTop: "15px" }}>Shipping Address</h6>
-                            {Alladdress.length > 0 && Alladdress.map(adr => {
 
-                                if (adr._id === defid) {
+                            {Alladdress.length > 0 && Alladdress.map(adr => {
+                                
+                                if (adr._id === defid ) {
                                     if (Shipaddress.length === 0) {
                                         setShipaddress(adr)
                                     }
@@ -234,7 +236,8 @@ const Checkout = () => {
                                         </div>
                                     );
                                 }
-                                return null
+                                
+
 
                             })}
                         </div>
@@ -286,7 +289,7 @@ const Checkout = () => {
                             <tbody>
                                 {cart.length > 0 && cart.map(cartItem => (
                                     <tr key={cartItem[0]} >
-                                        <td style={{ height: "100px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={hosturl+cartItem[2][0]} alt="" style={{ width: "70px" }}></img></td>
+                                        <td style={{ height: "100px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={`http://localhost:3000/uploads/${cartItem[2][0]}`} alt="" style={{ width: "70px" }}></img></td>
                                         <td style={{ height: "100px", fontSize: "small", fontFamily: "Rubik", backgroundColor: "white" }}>{cartItem[1]}  <br />MRP : ₹{cartItem[3]}.00 </td>
                                         <td style={{ height: "100px", fontSize: "small", fontFamily: "Rubik", backgroundColor: "white" }}><input
                                             type="number"
@@ -361,6 +364,12 @@ const Checkout = () => {
                             ))}
                         </Modal.Body>
                         <Modal.Footer>
+                        <Button variant="primary"  onClick={() => {
+                                navigate("/dashboard/my_account/your-address")
+                                sessionStorage.setItem("redirectUrl", "/order/checkout-order");
+                            }}>
+                                Add New Address
+                            </Button>
                             <Button variant="primary" onClick={handleClosebill}>
                                 Proceed
                             </Button>
@@ -521,6 +530,12 @@ const Checkout = () => {
                             ))}
                         </Modal.Body>
                         <Modal.Footer>
+                        <Button variant="primary"  onClick={() => {
+                                navigate("/dashboard/my_account/your-address")
+                                sessionStorage.setItem("redirectUrl", "/order/checkout-order");
+                            }}>
+                                Add New Address
+                            </Button>
                             <Button variant="primary" onClick={handleClosebill}>
                                 Proceed
                             </Button>
