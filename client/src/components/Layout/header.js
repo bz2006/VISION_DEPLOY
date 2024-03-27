@@ -84,9 +84,9 @@ const Header = () => {
           <FontAwesomeIcon icon={faXmark} onClick={closeCatbar} size='2x' color='black' style={{ float: "right" }} />
           <Container className='catnavigators'>
             {categories.map(c => (
-              <>
-                <a onClick={() => { closeSidebar(); navigate(`/shop/${c._id}`) }} className='mobnav'>{c.name}</a>
-              </>
+              <div key={c._id} >
+                <a onClick={() => { closeSidebar(); navigate(`/shop/${c._id}`) }}  className='mobnav'>{c.name}</a>
+              </div>
             ))}
           </Container>
         </div>
@@ -101,7 +101,9 @@ const Header = () => {
                 <div className='hddiv'>
                   <Nav.Link href="/" className='homm'>Home</Nav.Link>
                   <NavDropdown title="Shop" id="basic-nav-dropdown" className='hom'>
-                    {categories.map(c => (<NavDropdown.Item href={`/shop/${c._id}`} >{c.name}</NavDropdown.Item>))}
+                  {categories.map((c) => (
+    <NavDropdown.Item key={c._id} href={`/shop/${c._id}`} >{c.name}</NavDropdown.Item>
+  ))}
 
 
                   </NavDropdown>

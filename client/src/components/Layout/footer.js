@@ -29,19 +29,19 @@ const Footer = () => {
     <footer style={{ backgroundColor: "rgb(218, 218, 218)", color: "black", marginTop: "100px" }}>
       <Container>
         < Row xs={1} md={4} className="g-4 row-cols-md-2 row-cols-1">
-          <Col >
-            <a href="/">
-              <img src="https://static.wixstatic.com/media/c1ec53_cdb43083bb05441ca9fb28a5027a7306~mv2.webp" className='brimg' alt="Logo" />
+          <Col className='coool'>
+             <a href="/">
+              <img src="https://static.wixstatic.com/media/c1ec53_cdb43083bb05441ca9fb28a5027a7306~mv2.webp" className='brimg' alt="" />
             </a>
             <p className="my-3" style={{ maxWidth: '250px', textDecoration: "none", color: "black" }}>
               We are creating High-Quality Resources and tools to Aid developers during the development of their projects
-            </p>
+            </p> 
           </Col>
           <Col className='one'>
             <h4>CATEGORIES</h4>
             
               {categories.map(c => (
-                <div className='cont1'>
+                <div className='cont1' key={c._id}>
                   <a onClick={() => {  navigate(`/shop/${c._id}`) }} style={{ textDecoration: "none", color: "black" }} className='mobnav'>{c.name}</a>
                 </div>
               ))}
