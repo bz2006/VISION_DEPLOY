@@ -51,6 +51,19 @@ const Youraddress = () => {
 
         }
     }
+    const Getallddressnod = async () => {
+        try {
+            const alladrs = await axios.get(`/api/v1/users/getall-address/${auth.user._id}`);
+            const lastArray = alladrs.data.Alladdres[alladrs.data.Alladdres.length - 1];
+            await axios.post(`/api/v1/users/user-def-adres/${auth.user._id}`, lastArray._id);
+            Getallddress()
+
+        } catch (error) {
+            toast.error("something went wrong");
+
+        }
+    }
+
 
 
     useEffect(() => {
@@ -74,10 +87,12 @@ const Youraddress = () => {
             })
             await axios.post(`/api/v1/users/update-user/${auth.user._id}`, Data);
             toast.success("New address added")
-            Getallddress()
+            await Getallddressnod()
+            
             const redirectUrl = sessionStorage.getItem("redirectUrl");
             if (redirectUrl == "/order/checkout-order") {
                 navigate(redirectUrl)
+                window.location.reload();
             }
 
         } catch (error) {

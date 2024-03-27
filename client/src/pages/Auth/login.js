@@ -71,6 +71,7 @@ function Login() {
 
                         <button type="submit" className="subbtn">Login</button>
                         <hr className='divi' />
+                        <a href='/forgotpass'>Forgot password?</a>
                     </div>
                 </form>
             </div>

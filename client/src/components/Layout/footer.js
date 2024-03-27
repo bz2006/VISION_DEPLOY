@@ -42,7 +42,7 @@ const Footer = () => {
             
               {categories.map(c => (
                 <div className='cont1' key={c._id}>
-                  <a onClick={() => {  navigate(`/shop/${c._id}`) }} style={{ textDecoration: "none", color: "black" }} className='mobnav'>{c.name}</a>
+                  <a onClick={() => {  navigate(`/shop/${c._id}`) }} style={{ textDecoration: "none", color: "black",cursor:"pointer"  }} className='mobnav'>{c.name}</a>
                 </div>
               ))}
           </Col>

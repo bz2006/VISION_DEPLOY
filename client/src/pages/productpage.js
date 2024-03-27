@@ -6,6 +6,7 @@ import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from "react-router-dom";
 import "./productpage.css"
 import { useCart } from "../context/cart";
 
@@ -17,6 +18,7 @@ const ProductPage = () => {
     const params = useParams();
     const [pid, setId] = useState("");
     const [name, setName] = useState("");
+    const navigate = useNavigate();
     const [description, setDescription] = useState("");
     const [mrp, setMrp] = useState("");
     const [images, setImages] = useState([]);
@@ -86,7 +88,11 @@ const ProductPage = () => {
                             const finalqty = [pid, name, images, mrp, Quantity];
                             setCart([...cart, finalqty]);
                         }}>Add to Cart</button><br />
-                        <button className="buy">Buy Now</button>
+                        <button className="buy" onClick={() => {
+                            const finalqty = [pid, name, images, mrp, Quantity];
+                            setCart([...cart, finalqty]);
+                            navigate("/cart")
+                        }}>Buy Now</button>
                     </Col>
                 </Row>
                 <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">
@@ -135,7 +141,11 @@ const ProductPage = () => {
                             const finalqty = [pid, name, images, mrp, Quantity];
                             setCart([...cart, finalqty]);
                         }}>Add to Cart</button><br />
-                        <button className="buy">Buy Now</button>
+                        <button className="buy" onClick={() => {
+                            const finalqty = [pid, name, images, mrp, Quantity];
+                            setCart([...cart, finalqty]);
+                            navigate("/cart")
+                        }}>Buy Now</button>
                     </Col>
                 </Row>
                 <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">

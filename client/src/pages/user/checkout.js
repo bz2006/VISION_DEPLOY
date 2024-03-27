@@ -49,7 +49,9 @@ const Checkout = () => {
             setallAdrs(alladrs.data.Alladdres)
             setdefid(alladrs.data.defadrs)
             setdefbillid(alladrs.data.defadrs)
-
+            if(alladrs.data.Alladdres.length ===0){
+                handleShowship()
+            }
 
         } catch (error) {
             toast.error("something went wrong");
