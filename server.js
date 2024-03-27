@@ -5,6 +5,7 @@ import connectdb from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
 import cors from "cors"
 import categoryRoute from "./routes/categoryRoute.js"
+import bodyParser from 'body-parser';
 import razorpayRoutes from "./routes/rzppaymentRoute.js"
 import productRoute from "./routes/productRoute.js"
 import usersRoute from "./routes/usersRoute.js"
@@ -13,6 +14,8 @@ import OrderRoutes from "./routes/orderRoute.js"
 import path from "path";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { sendEmail } from "./middlewares/nodemailerMiddleware.js";
+import { sendwelcomemail } from "./middlewares/nodemailerMiddleware.js";
 
 dotenv.config();
 
@@ -27,7 +30,7 @@ app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
-
+app.use(bodyParser.json());
 
 app.use("/api/v1/auth",authRoute)
 app.use("/api/v1/category", categoryRoute);
@@ -39,6 +42,8 @@ app.use("/api/v1/orders", OrderRoutes);
 app.use(express.static(path.join(__dirname, "client/build")))
 app.use(express.static(path.join(__dirname, 'client', 'public')));
 
+app.post('/send-email', sendEmail);
+app.post('/send-welcome-mail', sendwelcomemail);
 
 // Serve the React frontend
 app.get('*', (req, res) => {
