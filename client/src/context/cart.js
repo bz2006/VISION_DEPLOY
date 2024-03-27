@@ -82,9 +82,7 @@ const CartProvider = ({ children }) => {
         });
       }
       await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
-      console.log("Cart synced with server successfully.");
     } catch (error) {
-      console.error("Error syncing cart with server:", error);
     }
   };
 

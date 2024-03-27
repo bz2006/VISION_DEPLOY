@@ -19,7 +19,6 @@ export default function AdminRoute() {
           setIsAdmin(false);
         }
       } catch (error) {
-        console.error("Error checking admin authentication:", error);
       } finally {
         setLoading(false);
       }
@@ -33,7 +32,7 @@ export default function AdminRoute() {
   }, [auth?.token]);
 
   if (loading) {
-    return null; // Don't render anything while loading
+    return null; 
   }
 
   return isAdmin ? <Outlet /> : null;

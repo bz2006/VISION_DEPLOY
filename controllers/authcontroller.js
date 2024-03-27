@@ -4,9 +4,9 @@ import JWT from "jsonwebtoken";
 
 export const signupcontroller = async (req, res) => {
     try {
-        const {username,password, email } = req.body
+        const { username, password, email } = req.body
 
-       
+
         if (!email) {
             return res.send({ message: "email Required" })
         }
@@ -26,8 +26,10 @@ export const signupcontroller = async (req, res) => {
             })
         }
         //registering
+        const currentDate = new Date();
+        const signupdate = currentDate.toDateString()
         const hashedpass = await hashPassword(password)
-        const user = await new userModel({ username,email, password: hashedpass, }).save()
+        const user = await new userModel({ username, email, password: hashedpass, date:signupdate,}).save()
         res.status(201).send({
             success: true,
             message: "User Register Successfully",
@@ -35,7 +37,6 @@ export const signupcontroller = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error);
         res.status(500).send({
             success: false,
             message: "Errro in Registeration",
@@ -74,7 +75,6 @@ export const logincontroller = async (req, res) => {
         const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: "7d",
         });
-        console.log("here")
         res.status(200).send({
             success: true,
             message: "login successfully",
@@ -83,12 +83,11 @@ export const logincontroller = async (req, res) => {
                 _id: user._id,
                 username: user.username,
                 email: user.email,
-                role:user.role,
+                role: user.role,
 
             }, token,
         })
     } catch (error) {
-        console.log(error);
         res.status(500).send({
             success: false,
             message: "Error in login",

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { faPen } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import "./Admindashboard.css"
 const Products = () => {
   var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
@@ -18,16 +18,9 @@ const Products = () => {
       const { data } = await axios.get("/api/v1/product/getall-product");
       setProducts(data.productList);
       if (data.success) {
-
-        console.log(data)
-        console.log("Products State:", setProducts);
-        console.log(products)
-
-
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting products");
     }
   };
 
@@ -64,7 +57,7 @@ const Products = () => {
 
           <div className="col-md-3">
             <div>
-              <h3>Products</h3>
+            <h2 style={{ margin: "30px", fontFamily: "Rubik", fontWeight: "400" }}>Products</h2>
               <div className='tb'>
                 <table>
                   <thead>

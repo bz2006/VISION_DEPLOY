@@ -12,7 +12,7 @@ function CartPage() {
     var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
 
     const [cart, setCart] = useCart([])
-    const [auth, setAuth] = useAuth()
+    const [auth] = useAuth()
     const [qty, setQty] = useState(0);
     const [amount, setAmount] = useState(0);
     const navigate = useNavigate()
@@ -79,9 +79,7 @@ function CartPage() {
                 });
             }
             await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
-            console.log("Cart synced with server successfully in cart page.");
         } catch (error) {
-            console.error("Error syncing cart with server:", error);
         }
     };
 
@@ -98,7 +96,8 @@ function CartPage() {
     return (
         <Layout >
             <div style={{ backgroundColor: "rgb(236, 239, 243)" }}>
-                <h1>Shopping Cart</h1>
+                <div style={{padding:"20px"}}><h2 style={{ fontFamily: "Rubik", fontWeight: "400" }}>Shopping Cart</h2></div>
+
                 {cart.length !== 0 ? (
                     <>
                         <div className="ctdiv">
@@ -107,7 +106,7 @@ function CartPage() {
                                     <table style={{ width: "100%" }}>
                                         <thead>
                                             <tr>
-                                                <th style={{ borderTopLeftRadius: "17px", backgroundColor: "white" }}>My Cart</th>
+                                                <th style={{ borderTopLeftRadius: "17px", backgroundColor: "white",color:"black"}}>My Cart</th>
                                                 <th style={{ backgroundColor: "white" }}></th>
                                                 <th style={{ backgroundColor: "white" }}></th>
                                                 <th style={{ borderTopRightRadius: "17px", backgroundColor: "white" }}></th>
@@ -116,7 +115,6 @@ function CartPage() {
                                         <tbody>
                                             {cart.length > 0 && cart.map(cartItem => (
                                                 <tr key={cartItem[0]}>
-                                                    {console.log(cartItem[0])}
                                                     <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={hosturl + cartItem[2][0]} alt="" style={{ width: "90px" }}></img></td>
                                                     <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}>{cartItem[1]}</td>
                                                     <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><input
@@ -136,7 +134,7 @@ function CartPage() {
                                                             setCart(updatedCart);
                                                         }}
                                                     /></td>
-                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", fontWeight: "bold", backgroundColor: "white", paddingTop: "38px" }}>₹{cartItem[3] * cartItem[4]}.00  <br /> <a className="delcart" onClick={() => {
+                                                    <td style={{ height: "120px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white", paddingTop: "38px" }}>₹{cartItem[3] * cartItem[4]}.00  <br /> <a className="delcart" onClick={() => {
                                                         handleDelete(cartItem[0]);
                                                     }} >Delete</a></td>
 
@@ -147,8 +145,8 @@ function CartPage() {
                                             <tr>
                                                 <th style={{ borderBottomLeftRadius: "17px", backgroundColor: "white", height: "80px" }}></th>
                                                 <th style={{ backgroundColor: "white", height: "80px" }}></th>
-                                                <th style={{ backgroundColor: "white", height: "80px" }}> Subtotal ({qty} Items) :</th>
-                                                <th style={{ borderBottomRightRadius: "17px", backgroundColor: "white", fontSize: "larger", height: "80px" }}>₹{amount}.00</th>
+                                                <th style={{ backgroundColor: "white", height: "80px" ,color:"black" }}> Subtotal ({qty} Items) :</th>
+                                                <th style={{ borderBottomRightRadius: "17px", backgroundColor: "white", fontSize: "larger",fontFamily: "Rubik", height: "80px" ,color:"black"}}>₹{amount}.00</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -191,7 +189,7 @@ function CartPage() {
                                                 setCart(updatedCart);
                                             }}
                                         >
-                                            {[...Array(10)].map((_, index) => ( // Assuming maximum quantity is 10
+                                            {[...Array(10)].map((_, index) => ( 
                                                 <option key={index + 1} value={index + 1}>{index + 1}</option>
                                             ))}
                                         </select>

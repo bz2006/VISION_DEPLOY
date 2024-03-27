@@ -1,12 +1,13 @@
 import React from 'react'
-import Layout from "./../components/Layout/Layout";
+import "./404.css"
 
 function Pagenf() {
+    var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
     return (
-        <Layout>
-            <h1>404</h1>
-            <h1>PageNot Found</h1>
-        </Layout>
+        <>
+            <img src={hosturl + "404.png"} className='pof' alt='' />
+            <img src={hosturl + "404mob-min.png"} className='mobpof' alt='' />
+        </>
     )
 }
 

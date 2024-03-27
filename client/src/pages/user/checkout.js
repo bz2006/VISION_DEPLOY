@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Layout from '../../components/Layout/Layout';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import { useCart } from "../../context/cart";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 
 import "./checkout.css";
 
@@ -54,7 +52,6 @@ const Checkout = () => {
 
 
         } catch (error) {
-            console.log(error);
             toast.error("something went wrong");
 
         }
@@ -108,9 +105,7 @@ const Checkout = () => {
                 });
             }
             await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
-            console.log("Cart synced with server successfully in cart page.");
         } catch (error) {
-            console.error("Error syncing cart with server:", error);
         }
     };
 
@@ -134,7 +129,6 @@ const Checkout = () => {
 
     // Function to create an order
     const createOrder = async () => {
-        console.log(Shipaddress, billaddress)
         const response = await fetch('/api/v1/razorpay/create-order', {
             method: 'POST',
             headers: {
@@ -145,7 +139,6 @@ const Checkout = () => {
             }),
         });
         const data = await response.json();
-        console.log(response)
         setOrderId(data.id);
         handlePayment()
     };
@@ -160,7 +153,6 @@ const Checkout = () => {
             description: 'Test payment',
             order_id: orderId,
             handler: function (response) {
-                console.log(response);
                 Placeorder()
                 navigate("/dashboard/my_account/your-orders")
                 setCart([])
@@ -201,9 +193,9 @@ const Checkout = () => {
                 products: prod
             };
             const { data } = await axios.post("/api/v1/orders/create-order", orderData);
+            await axios.put(`/api/v1/users/user_ordersno/${auth.user._id}`);
 
         } catch (error) {
-            console.log(error);
             toast.error("something went wrong");
 
         }

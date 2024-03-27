@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Layout from "../../components/Layout/Layout";
 import axios from "axios";
+import Tracking from "./tracking";
 import "./orders.css"
 
 
@@ -23,18 +24,8 @@ const UserOrderDetails = () => {
     try {
       const singleorder = await axios.get(`/api/v1/orders/user-order/${params.id}`);
       setOrder(singleorder.data);
-      console.log(singleorder.data)
-      // setDescription(data.product.description);
-      // setSelectedImages(data.product.images);
-      // setMrp(data.product.mrp);
-      // setCategory(data.product.category);
-      // setInStock(data.product.InStock);
-      if (singleorder.success) {
-
-      }
     } catch (error) {
-      console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting catgeory");
     }
   };
 
@@ -46,16 +37,23 @@ const UserOrderDetails = () => {
   }, []);
 
 
+
   return (
     <Layout>
-
       <div className='codiv'>
-        <h1>Order Summary</h1><br />
+        <h1>Order Summary</h1>
+        {order.length > 0 && order.map(ord => (
+          <>
+        <h6>Order# &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ord.orderid}</h6>
+        <h6>Order Date &nbsp;&nbsp;{ord.orderdate}</h6>
+        <Tracking status={ord.status}/>
+        </>))}
+        
         <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">
           <Col className='ordcol1'>
             <div style={{ display: "inline-block" }}>
               <h6 style={{ marginTop: "15px" }}>Shipping Address</h6>
-              {order.length > 0 && order.map(ord => (
+              {order.length > 0 && order.map((ord,index) => (
                 <div>
                   <h6 style={{ fontSize: "17px", fontFamily: "Rubik", fontWeight: "500", marginTop: "15px" }}>{ord.shipaddress.name}</h6>
                   <h6 style={{ fontSize: "15px", fontFamily: "Rubik", fontWeight: "500" }}>{ord.shipaddress.address}</h6>
@@ -67,7 +65,7 @@ const UserOrderDetails = () => {
                 </div>
               ))}
             </div>
-            <div style={{ display: "inline-block", marginLeft: "110px" }}>
+            <div style={{ display: "inline-block", marginLeft: "80px" }}>
               <h6 style={{ marginTop: "15px" }}>Billing Address</h6>
               {order.length > 0 && order.map(ord => (
                 <div>
@@ -83,11 +81,11 @@ const UserOrderDetails = () => {
 
               ))}
             </div>
-            <div style={{ display: "inline-block", marginLeft: "110px" }}>
+            <div style={{ display: "inline-block", marginLeft: "110px" ,position:"absolute"}}>
 
               {order.length > 0 && order.map(ord => (
                 <div>
-                  <h6 style={{ marginTop: "15px", display: "inline-block" }}>Payment Method&nbsp;&nbsp;&nbsp;&nbsp;<h6 style={{ display: "inline-block", marginLeft: "110px" }}>Status</h6> <h6 style={{ display: "inline-block", color: "green" }}>{ord.status}</h6></h6>
+                  <h6 style={{ marginTop: "15px", display: "inline-block" }}>Payment Method&nbsp;&nbsp;&nbsp;&nbsp; <h6 style={{ marginLeft:"30px",fontSize:"larger",display: "inline-block", color: "green" }}>{ord.status}</h6></h6>
                   <div>
                     <img src={hosturl + "Razorpay_payments.png"} style={{ width: "120px", marginBottom: "300px" }} />
                   </div>
@@ -139,6 +137,7 @@ const UserOrderDetails = () => {
             <h6 >Order Date &nbsp;&nbsp;&nbsp;{ord.orderdate}</h6>
             <h6 >Order Total &nbsp;&nbsp;&nbsp;₹{ord.total}.00</h6>
           </div>
+          <Tracking status={ord.status}/>
           <div className='orddiv'>
             {ord.products.map((product, index) => (
               <div key={product[0]}>

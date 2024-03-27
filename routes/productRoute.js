@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import {
-  createProductController, deleteproduct, getSingleProduct, getAllProducts, updateProducts, storage
+  createProductController, deleteproduct, getSingleProduct, getAllProducts, updateProducts, storage,getProducts
 } from "../controllers/productController.js";
 import { isAdmin, requireSignup } from "../middlewares/authMiddleware.js";
 const upload = multer({ storage })
@@ -34,6 +34,8 @@ router.get("/getall-product", requireSignup,
 
 //get all products for shopPage
 router.get("/shop-products", getAllProducts);
+
+router.get("/cat-products/:id", getProducts);
 
 
 //get single products

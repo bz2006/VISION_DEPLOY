@@ -2,7 +2,14 @@ import express from "express";
 import multer from "multer";
 import { useraddress } from "../controllers/usersController.js";
 import { isAdmin, requireSignup } from "../middlewares/authMiddleware.js";
-import { getAllUsers,getalladdress, setDefaultadrs,updateuseraddress,deleteuseraddress} from "../controllers/usersController.js";
+import { 
+  getAllUsers,
+  getalladdress, 
+  setDefaultadrs,
+  updateuseraddress,
+  deleteuseraddress,
+  updateUserOrdersno} from "../controllers/usersController.js";
+  import { categoryControlller } from "../controllers/categoryController.js";
 // const upload = multer({ storage })
 
 const router = express.Router();
@@ -23,6 +30,15 @@ router.post(
 router.put(
   "/update-user-adrs/:id",
   requireSignup,updateuseraddress
+
+);
+
+router.get("/get-category",  categoryControlller);
+
+
+router.put(
+  "/user_ordersno/:id",
+  requireSignup,updateUserOrdersno
 
 );
 

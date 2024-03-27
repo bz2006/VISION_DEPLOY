@@ -1,4 +1,4 @@
-@media screen and (min-width: 601px) and (max-width: 2000px) {
+@media screen and (min-width: 801px) and (max-width: 2000px) {
 
 
     .brimg {
@@ -33,32 +33,30 @@
     .dropmenu {
         height: 130px;
         width: 300px;
-        margin-left: -150px;
-
-
-
-        .lrrbtn {
-
-            margin-top: 50px;
-            width: 115px;
-            height: 50px;
-            margin-left: 20px;
-            margin-right: 5px;
-            border-radius: 15px;
-            color: white;
-            border-color: rgb(10, 72, 51);
-            background-color: rgb(10, 72, 51);
-        }
+        margin-left: -200px;
     }
 
-    .drop {
-        margin-left: 50px;
+    .lrrbtn {
+
+        margin-top: 50px;
+        width: 115px;
+        height: 50px;
+        margin-left: 20px;
+        margin-right: 5px;
+        border-radius: 15px;
+        color: white;
+        border-color: rgb(10, 72, 51);
+        background-color: rgb(10, 72, 51);
     }
+.gif{
+    width: 25px;
+    height: 22px;
+}
 
     .drop2 {
         height: 145px;
         width: 200px;
-        margin-left: -70px;
+        margin-left: -80px;
     }
 
     .hddiv {
@@ -70,13 +68,14 @@
     .mobhead {
         display: none;
     }
-    .nav-menu{
+
+    .nav-menu {
         display: none;
     }
 }
 
 /* --------------------------------------Small Screen----------------------------------------------- */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
     .pcheader {
         display: none;
@@ -102,7 +101,7 @@
 
     .nav-menu {
         padding: 15px;
-        width: 80%;
+        width: 60%;
         height: 100vh;
         background-color: #ffffff;
         position: fixed;
@@ -115,14 +114,47 @@
     .nav-menu.active {
         left: 0;
     }
-    .mobnav{
+
+    .nav-cat-menu {
+        padding: 15px;
+        width: 100%;
+        height: 40%;
+        background-color: #ffffff;
+        position: fixed;
+        border-radius: 20px;
+        bottom: -40%;
+        left: 0;
+        overflow-y: auto;
+        transition: bottom 0.3s ease;
+        z-index: 1000;
+        overflow-x: hidden;
+    }
+
+    .nav-cat-menu.active {
+        bottom: 0;
+    }
+
+    .mobnav {
         text-decoration: none;
         font-size: 25px;
         color: rgb(0, 0, 0);
         display: block;
     }
-    .navigators{
+
+    .navigators {
         margin-top: 35px;
+    }
+
+    .catnavigators {
+        margin-top: 15px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 40px;
+        position: absolute;
+        padding: 30px;
+        grid-gap: 40px;
+        
+
     }
 
 }

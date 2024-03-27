@@ -25,7 +25,7 @@ export default function PrivateRoute() {
   }, [auth?.token]);
 
   if (!ok) {
-    return null; // Don't render anything while authentication check is in progress
+    return null; 
   }
 
   return ok ? <Outlet /> : <Redirecter/>;

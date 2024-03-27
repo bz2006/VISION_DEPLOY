@@ -5,7 +5,7 @@
 
 
 .cattop {
-    margin-left: 40px;
+    margin-left: 150px;
     margin-top: 40px;
     color: black;
     margin-bottom: 40px;
@@ -131,14 +131,18 @@
 }
 
 .label {
-    background-color: rgb(191, 208, 222);
-    color: rgb(46, 46, 46);
-    border-radius: 10px;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 140px;
+    height: 140px;
+    border-style: dashed;
+    border: 2px dashed rgb(208, 208, 208);
+    background-color: white;
+    border-radius: 7px;
     cursor: pointer;
-    width: 150px;
-    height: 50px;
 
-
+    margin-bottom: 10px;
 }
 
 input {
@@ -369,4 +373,18 @@ th {
     margin-top: 20px;
     border-radius: 10px;
     margin-left: 35px;
+}
+.button-container {
+    display: flex;
+    
+  }
+.prcrbtn{
+    height: 40px;
+        width:180px;
+        color: white;
+        border-radius: 10px;
+        margin: 20px;
+        font-family: Arial, sans-serif;
+        background-color: rgb(0, 80, 87);
+        border: 1px solid rgb(0, 80, 87);
 }

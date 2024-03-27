@@ -1,8 +1,8 @@
 import Razorpay from "razorpay"
 
 const razorpayInstance = new Razorpay({ 
-  key_id: process.env.RAZORPAY_API_KEY, 
-  key_secret: process.env.RAZORPAY_API_SECRET 
+  key_id: "rzp_test_HR0OOE6FLlHVg8", 
+  key_secret: "sPu8htjwrlQ0KZLBCpqpQwr3"
 });
 
 
@@ -19,7 +19,6 @@ export const createOrder = async (req, res, next) => {
     req.order = order; 
     next();
   } catch (error) {
-    console.error("Error creating order:", error);
     res.status(500).json({ error: "Failed to create order" });
   }
 };
@@ -33,7 +32,6 @@ export const capturePayment = async (req, res, next) => {
     req.payment = payment; 
     next();
   } catch (error) {
-    console.error("Error capturing payment:", error);
     res.status(500).json({ error: "Payment failed" });
   }
 };

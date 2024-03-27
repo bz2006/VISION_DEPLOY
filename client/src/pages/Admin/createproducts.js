@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from '../../components/Layout/admin/adminSidebar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import axios from "axios";
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import Form from 'react-bootstrap/Form';
@@ -18,6 +18,7 @@ const CreateProduct = () => {
   const [mrp, setMrp] = useState("");
   const [category, setCategory] = useState("");
   const [InStock, setInStock] = useState("");
+  const [Featured, setFeatured] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
 
 
@@ -28,8 +29,7 @@ const CreateProduct = () => {
         setCategories(data.category);
       }
     } catch (error) {
-      console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting catgeory");
     }
   };
 
@@ -73,12 +73,9 @@ const CreateProduct = () => {
       productData.append("mrp", mrp);
       productData.append("category", category);
       productData.append("InStock", InStock);
+      productData.append("isFeatured", Featured);
 
       const { data } = await axios.post("/api/v1/product/create-product", productData);
-
-
-
-
 
 
       if (data?.success) {
@@ -88,7 +85,6 @@ const CreateProduct = () => {
         navigate("/dashboard/manage.vision/admin/products");
       }
     } catch (error) {
-      console.log(error);
       toast.error("something went wrong");
     }
   };
@@ -104,15 +100,18 @@ const CreateProduct = () => {
 
           <div className="col-md-3">
             <div>
-              <button onClick={()=>{navigate("/dashboard/manage.vision/admin/products")}}>Cancel</button><button onClick={handleCreate}>Create</button>
+              <div className="button-container">
+                <button className="prcrbtn" onClick={() => { navigate("/dashboard/manage.vision/admin/products") }}>Cancel</button>
+                <button onClick={handleCreate} className="prcrbtn">Create</button>
+              </div>
               <div className="prgrid">
                 <div className='upimg'>
                   <h4 className="prhead">Product Images<hr></hr>
                   </h4>
-                  <div >
+                  <div style={{ padding: "20px" }}>
                     <input type="file" id='upload' accept="image/png, image/jpeg,image/webp" onChange={onSelectFile} multiple >
 
-                    </input><label className="label" for="upload"><h3 >Upload +</h3></label>
+                    </input><label className="label" for="upload"><h1 style={{ fontSize: "70px" }}>+</h1></label>
                     <div className="images">
                       {selectedImages &&
                         selectedImages.map((image, index) => {
@@ -138,6 +137,29 @@ const CreateProduct = () => {
                     </option>
                   ))}
                   </Form.Select>
+                  <div style={{padding:"20px"}}>
+                    <label>
+                      <input
+                       style={{display:"block"}}
+                        type="radio"
+                        name="featured"
+                        value="true"
+                        checked={Featured}
+                        onChange={() => setFeatured(true)}
+                      />
+                      Featured&nbsp; &nbsp; 
+                    </label>
+                    <label>
+                      <input style={{display:"block"}}
+                        type="radio"
+                        name="featured"
+                        value="false"
+                        checked={!Featured}
+                        onChange={() => setFeatured(false)}
+                      />
+                      Not Featured
+                    </label>
+                  </div>
                 </div>
               </div>
               <div className="prinfo">

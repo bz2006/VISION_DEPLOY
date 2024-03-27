@@ -97,6 +97,23 @@ export const getAllProducts = async (req, res) => {
     }
 };
 
+export const getProducts = async (req, res) => {
+    try {
+        const categoryId = req.params.id; 
+        
+        const productList = await productModel.find({ category: categoryId });
+        
+        if (!productList) {
+            return res.status(404).json({ success: false, message: 'No products found for the specified category' });
+        }
+        
+        return res.status(200).json({ success: true, productList });
+    } catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+
 export const updateProducts = async (req, res) => {
     const file = req.file;
     let imagesPaths = [];
@@ -137,7 +154,6 @@ export const updateProducts = async (req, res) => {
         }
         res.json({ message: 'Product updated successfully', updatedProduct: product });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };

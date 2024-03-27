@@ -4,7 +4,6 @@ import Order from "../models/orderModel.js";
 
 export const createOrder = async (req, res) => {
 
-    console.log("req.bosy", req.body)
     let order = new Order({
         userid: req.body.userid,
         orderid: req.body.orderId,
@@ -28,7 +27,6 @@ export const createOrder = async (req, res) => {
 
 export const getOrdersByUserId = async (req, res) => {
     const user = req.params.id;
-    console.log(user);
 
     try {
         // Find all orders for the user
@@ -40,7 +38,6 @@ export const getOrdersByUserId = async (req, res) => {
 
         return res.json(orders);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 };
@@ -48,7 +45,6 @@ export const getOrdersByUserId = async (req, res) => {
 
 export const getOrdersByorderId = async (req, res) => {
     const orderid = req.params.id;
-    console.log(orderid);
 
     try {
         const orders = await Order.find({ orderid: orderid });
@@ -59,7 +55,6 @@ export const getOrdersByorderId = async (req, res) => {
 
         return res.json(orders);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 };
@@ -74,10 +69,8 @@ export const getallOrders = async (req, res) => {
         if (orders.length === 0) {
             return res.status(404).json({ success: false, message: 'No orders found for this user.' });
         }
-        console.log(orders)
         return res.json(orders);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ success: false, message: 'Server Error' });
     }
 };
@@ -96,7 +89,6 @@ export const updatestatus = async (req, res) => {
         messsage: "Category status Successfully"
       });
     } catch (error) {
-      console.log(error);
       res.status(500).send({
         success: false,
         error,

@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from '../../context/auth';
 import "./signup.css";
 
 function Login() {
-    var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
+    var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
+    const [auth] = useAuth();
     const authData = JSON.parse(localStorage.getItem("auth"));
     const redirectUrl = sessionStorage.getItem("redirectUrl");
+
+
+
 
     useEffect(() => {
         const authData = JSON.parse(localStorage.getItem("auth"));
         const redirectUrl = sessionStorage.getItem("redirectUrl");
 
         if (authData) {
-            navigate(redirectUrl || "/"); // Redirect to captured URL or default location after login
+            navigate(redirectUrl || "/");
         }
     }, []);
 
@@ -28,16 +33,16 @@ function Login() {
         try {
             const res = await axios.post("/api/v1/auth/login", { email, password });
             if (res && res.data.success) {
-                console.log("Logged in");
-                toast.success("Login Successful");
+                 toast.success("Login successful"); 
                 localStorage.setItem("auth", JSON.stringify(res.data));
                 navigate(redirectUrl || "/");
                 window.location.reload();
             } else {
-                console.log(res.data.success);
+                toast.error("User Not Found")
+
             }
         } catch (error) {
-            console.log(error);
+            toast.error("Something went wrong")
         }
     };
 

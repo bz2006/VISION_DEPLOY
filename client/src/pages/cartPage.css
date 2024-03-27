@@ -18,7 +18,7 @@
 
     .buybtn {
         height: 50px;
-        width: 250px;
+        max-width:250px;
         color: white;
         border-radius: 10px;
         margin-bottom: 50px;
@@ -145,6 +145,6 @@
     }
 
     .mbtndiv {
-        padding: 20px;
+        padding: 10px;
     }
 }

@@ -6,7 +6,7 @@ import "./orders.css"
 
 const Yourorders = () => {
 
-    const [auth, setAuth] = useAuth();
+    const [auth] = useAuth();
     const [allorders, setAllorders] = useState([])
     var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
 
@@ -48,7 +48,9 @@ const Yourorders = () => {
                                         <td>{product[1]} <br /><h6 style={{ color: "red", fontFamily: "Rubik", fontSize: "small", fontWeight: "400" }}>₹{product[3]}.00</h6></td>
                                         <td></td>
                                         <td></td>
-                                        <td>{index === 0 ? <><h6>{ord.status}</h6> <br /><button className='trbtn'>Track</button></> : ""}</td>
+                                        <td>{index === 0 ? <><h6 style={{fontSize:"larger", color: "green" }}>{ord.status}</h6> <br /><button className='trbtn' onClick={()=>{
+                                            window.location.href = `/dashboard/my_account/your-orders/order/${ord.orderid}`
+                                        }}>View Details</button></> : ""}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -61,12 +63,11 @@ const Yourorders = () => {
                     <div className='orddiv'>
                         {ord.products.map((product, index) => (
                             <div key={product[0]}  onClick={()=>{
-                                console.log(ord.orderid);
                                 window.location.href = `/dashboard/my_account/your-orders/order/${ord.orderid}`
                             }}>
                                 <div className='ordiv'>
-                                    <img src={hosturl + product[2]} style={{ width: "50px", height: "50px", display: "inline-block" }} />
-                                    <h6 className="card-text" style={{ marginLeft: "70px", display: "inline-block"}}>{product[1]}</h6>
+                                    <img src={hosturl + product[2]} style={{ width: "70px", height: "70px", display: "inline-block" }} />
+                                    <h6 className="card-text" style={{ marginLeft: "50px", display: "inline-block"}}>{product[1]}</h6>
                                     <h6 className="card-text" style={{ marginLeft: "120px",marginTop:"-20px"}}>{ord.status}</h6>
                                 </div>
                             </div>))}

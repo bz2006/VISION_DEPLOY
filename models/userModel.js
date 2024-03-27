@@ -50,6 +50,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
+    date:{
+        type:String,
+    },
 
 },
     { timestamps: true }

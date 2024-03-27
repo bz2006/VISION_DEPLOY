@@ -29,10 +29,10 @@
 
     .trbtn {
         width: 160px;
-        border-radius: 8px;
-        border: 1px solid rgb(2, 160, 2);
+        border-radius: 5px;
+        border: 1px solid rgb(0, 114, 104);
         color: white;
-        background-color: rgb(2, 160, 2);
+        background-color: rgb(0, 114, 104);
     }
     .mobdash {
         display: none;

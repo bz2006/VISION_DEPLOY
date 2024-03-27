@@ -1,14 +1,13 @@
-
 import React, { useState } from 'react'
 import axios from "axios";
-import toast from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from '../../context/auth';
 
 
 function Signup() {
-  var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
-
-
+  const [auth] = useAuth();
+  var hosturl = window.location.protocol + "//" + window.location.host + "/uploads/"
   const [username, setusername] = useState("")
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
@@ -16,28 +15,47 @@ function Signup() {
   const location = useLocation();
   const authData = JSON.parse(localStorage.getItem("auth"));
   const redirectUrl = sessionStorage.getItem("redirectUrl");
+  const formdata = {};
+
+
+
+  const welcomeMail = async () => {
+    try {
+      const response = await fetch('/send-welcome-mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formdata)
+      });
+      if (response.ok) {
+      } else {
+      }
+    } catch (error) {
+      
+    }
+  };
 
   const signupf = async (e) => {
     e.preventDefault()
     try {
       const res = await axios.post("/api/v1/auth/signup", { username, email, password });
-      ///console.log(req.headers)
       if (res && res.data.success) {
-        console.log("Registered")
-        toast.success("registered")
+        toast.success("Sign Up Successful");
         const res = await axios.post("/api/v1/auth/login", { email, password });
         if (res && res.data.success) {
-          console.log("Logged in");
-          toast.success("Login Successful");
+          formdata.name = username;
+          formdata.email = email;
+          await welcomeMail()
           localStorage.setItem("auth", JSON.stringify(res.data));
           navigate(redirectUrl || "/");
           window.location.reload();
         } else {
-          console.log(res.data.success);
+          toast.error("Log In failed")
         }
       }
     } catch (error) {
-      console.log(error)
+      toast.error("Something went wrong")
     }
   }
   return (

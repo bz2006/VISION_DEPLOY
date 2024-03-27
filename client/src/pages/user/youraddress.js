@@ -5,7 +5,7 @@ import { useAuth } from "../../context/auth";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useNavigate } from "react-router-dom";
@@ -47,7 +47,6 @@ const Youraddress = () => {
 
 
         } catch (error) {
-            console.log(error);
             toast.error("something went wrong");
 
         }
@@ -74,16 +73,14 @@ const Youraddress = () => {
                 phone: phone,
             })
             await axios.post(`/api/v1/users/update-user/${auth.user._id}`, Data);
+            toast.success("New address added")
             Getallddress()
             const redirectUrl = sessionStorage.getItem("redirectUrl");
-            console.log("1")
             if (redirectUrl == "/order/checkout-order") {
-                console.log("2")
                 navigate(redirectUrl)
             }
 
         } catch (error) {
-            console.log(error);
             toast.error("something went wrong");
 
         }
@@ -101,13 +98,12 @@ const Youraddress = () => {
             const adrsid = selectedaddress._id
             const Data = selectedaddress;
             await axios.put(`/api/v1/users/update-user-adrs/${auth.user._id}`, { adrsid, selectedaddress });
-
+toast.success("Address updated")
             Getallddress()
 
 
         } catch (error) {
-            console.log(error);
-            toast.error("something went wrong");
+            toast.error("Something went wrong");
 
         }
     }
@@ -117,11 +113,10 @@ const Youraddress = () => {
         try {
             await axios.post(`/api/v1/users/delete-user-adrs/${auth.user._id}`, seladrs);
             Getallddress()
-
+            toast.success("Address Deleted")
 
         } catch (error) {
-            console.log(error);
-            toast.error("something went wrong");
+            toast.error("Something went wrong");
 
         }
     }

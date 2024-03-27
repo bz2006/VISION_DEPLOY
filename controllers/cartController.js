@@ -29,7 +29,6 @@ export const createOrUpdateCart = async (req, res) => {
         // Respond with the updated or created cart
         res.status(200).json(cart);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
@@ -51,7 +50,6 @@ export const deleteCart = async (req, res) => {
 
         res.status(200).json({ message: 'Cart deleted successfully' });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
@@ -71,7 +69,6 @@ export const getCartsByUserId = async (req, res) => {
 
         res.status(200).json(carts);
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };

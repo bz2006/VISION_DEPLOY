@@ -34,8 +34,6 @@ export const updateuseraddress = async (req, res) => {
     const addressId = req.body.adrsid; 
     const updatedAddressData = req.body.selectedaddress;
 
-    console.log(userId,addressId,updatedAddressData)
-
     try {
         
         const user = await User.findById(userId);
@@ -63,7 +61,6 @@ export const updateuseraddress = async (req, res) => {
     
         res.status(200).send('Address updated successfully');
       } catch (error) {
-        console.log(error); 
       }
     }
 
@@ -86,7 +83,6 @@ export const useraddress = async (req, res) => {
 
         res.json({ message: 'Addresses added successfully', user });
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: 'Server error' });
     }
 }
@@ -103,7 +99,6 @@ export const getalladdress = async (req, res) => {
         }
         const Alladdres = user.addresses
         const defadrs = user.defaddress
-        console.log("def",user.defaddress)
         return res.status(200).json({ Alladdres, defadrs });
     } catch (error) {
         return res.status(500).json({ success: false, message: error.message });
@@ -115,7 +110,6 @@ export const setDefaultadrs = async (req, res) => {
     try {
         const userId = req.params.id;
         const defadrs = Object.keys(req.body)[0];
-        console.log("body", Object.keys(req.body)[0])
 
         const user = await User.findById(userId)
 
@@ -133,7 +127,7 @@ export const setDefaultadrs = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
     try {
-        const usersList = await userModel.find({});
+        const usersList = await User.find({});
         if (!usersList) {
             return res.status(500).json({ success: false, message: 'Internal Server Error' });
         }
@@ -142,6 +136,25 @@ export const getAllUsers = async (req, res) => {
         return res.status(500).json({ success: false, message: error.message });
     }
 };
+
+
+export const updateUserOrdersno = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+      const user = await User.findById(userId);
+      if (!user) {
+          return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      user.ordersNo = user.ordersNo+1;
+      await user.save();
+      return res.status(200).json({ success: true, message: 'Number of orders updated successfully' });
+  } catch (error) {
+      return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+
 
 export const deleteuseraddress = async (req, res) => {
     const userId = req.params.id; 
@@ -173,6 +186,5 @@ export const deleteuseraddress = async (req, res) => {
           }
           res.status(200).send('Address deleted successfully');
         } catch (error) {
-          console.log(error); 
         }
       };

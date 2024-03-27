@@ -19,10 +19,6 @@ const Orders = () => {
   useEffect(() => {
     getallOrders()
   }, [])
-
-  console.log(allorders)
-
-
   return (
     <body className='body'>
       <div className="container-fluid ">
@@ -33,7 +29,7 @@ const Orders = () => {
 
           <div className="col-md-3">
             <div>
-              <h3>Orders</h3>
+            <h2 style={{ margin: "30px", fontFamily: "Rubik", fontWeight: "400" }}>Orders</h2>
               <div>
                 <div className='tb'>
                   <table>

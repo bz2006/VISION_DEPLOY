@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AdminSidebar from '../../components/Layout/admin/adminSidebar'
 import AdminHeader from '../../components/Layout/admin/adminheader'
 import axios from "axios";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import "./Admindashboard.css"
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -12,17 +12,8 @@ const Users = () => {
     try {
       const { data } = await axios.get("/api/v1/users/getall-users");
       setUsers(data.usersList);
-      if (data.success) {
-
-        console.log(data)
-        console.log("Products State:", setUsers);
-        console.log(Users)
-
-
-      }
     } catch (error) {
-      console.log(error);
-      toast.error("Something wwent wrong in getting catgeory");
+      toast.error("Something went wrong in getting users");
     }
   };
 
@@ -32,23 +23,7 @@ const Users = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //delete product
-  const handleDelete = async (Id) => {
-    try {
-      const { data } = await axios.delete(
-        `/api/v1/product/delete-product/${Id}`
-      );
-      if (data.success) {
-        toast.success(`category is deleted`);
-
-        getAllUsers();
-      } else {
-        toast.error(data.message);
-      }
-    } catch (error) {
-      toast.error("Somtihing went wrong");
-    }
-  };
+  
   return (
     <body className='body'>
       <div className="container-fluid ">
@@ -59,7 +34,7 @@ const Users = () => {
 
           <div className="col-md-3">
             <div>
-              <h3>Users</h3>
+            <h2 style={{ margin: "30px", fontFamily: "Rubik", fontWeight: "400" }}>Users</h2>
               <div className='tb'>
                 <table>
                   <thead>
@@ -75,8 +50,8 @@ const Users = () => {
                       <tr key={user._id}>
                         <td>{user.username}</td>
                         <td>{user.email}</td>
-                        <td>{user.ordersNo === 0 ? 'No Orders Placed' : user.ordersNo + " Orders"}</td>
-                        <td>{user.createdAt}</td>
+                        <td>{user.ordersNo === 0 ? 'No Orders Placed' :     user.ordersNo}</td>
+                        <td>{user.date}</td>
                       </tr>
                     ))}
                   </tbody>

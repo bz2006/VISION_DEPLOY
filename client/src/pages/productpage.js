@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from './../components/Layout/Layout.js';
 import { useParams } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Row from 'react-bootstrap/Row';
@@ -35,12 +35,9 @@ const ProductPage = () => {
             setSelectedImage(data.product.images[0]);
             
 
-            if (data.success) {
-                // Do something if needed
-            }
+            
         } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong in getting category");
+            toast.error("Something went wrong in getting products");
         }
     };
 

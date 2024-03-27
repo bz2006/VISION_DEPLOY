@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 import axios from "axios";
 import { Updatecat } from "./updatecat";
 import { Createcat } from "./createcat";
@@ -33,7 +33,6 @@ const CreateCategory = () => {
                 toast.error(data.message);
             }
         } catch (error) {
-            console.log(error);
             toast.error("somthing went wrong in input form");
         }
     };
@@ -47,8 +46,7 @@ const CreateCategory = () => {
 
             }
         } catch (error) {
-            console.log(error);
-            toast.error("Something wwent wrong in getting catgeory");
+            toast.error("Something went wrong in getting catgeory");
         }
     };
     useEffect(() => {
@@ -107,8 +105,8 @@ const CreateCategory = () => {
 
 
                     <div className="col-md-3">
-                        <div>
-                            <div className='cattop'><h1>Catagories</h1>
+                        <div><h2 style={{ margin: "30px", fontFamily: "Rubik", fontWeight: "400" }}>Catagories</h2>
+                            <div className='cattop'>
                                 <Createcat handleSubmit={handleSubmit} value={name} setValue={setName} />
 
 
