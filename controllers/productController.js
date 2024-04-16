@@ -20,7 +20,7 @@ export const storage = multer.diskStorage({
         if (isValid) {
             uploadError = null
         }
-        cb(uploadError, 'C:/Users/EPHREM B/VISION/client/public/uploads')
+        cb(uploadError, 'client/public/uploads')
     },
     filename: function (req, file, cb) {
         const newfile = file.originalname.split(" ").join("_")
@@ -36,7 +36,7 @@ export const createProductController = async (req, res) => {
     if (!category) return res.status(400).send('Invalid Category')
     const file = req.file;
     let imagesPaths = [];
-    const basePath = "public/uploads"///`${req.protocol}://${req.get('host')}/public`;
+    const basePath = "public/uploads"
     const files = req.files
     if (files) {
         files.map(file => {
@@ -106,7 +106,7 @@ export const getProducts = async (req, res) => {
         if (!productList) {
             return res.status(404).json({ success: false, message: 'No products found for the specified category' });
         }
-        
+        console.log("haii console")
         return res.status(200).json({ success: true, productList });
     } catch (error) {
         return res.status(500).json({ success: false, message: error.message });

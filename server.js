@@ -25,7 +25,7 @@ const __dirname = path.dirname(__filename);
 const app = express()//express
 connectdb();//Database
 
-
+console.log("dirr _ ",__dirname)
 app.use(cors())
 app.use(morgan("dev"))
 app.use(express.json())
@@ -49,8 +49,8 @@ app.post('/send-welcome-mail', sendwelcomemail);
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
-
-const PORT = process.env.PORT || 3000
+export { __dirname };
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log('****Server Started on '+process.env. DEV_MODE +" Mode PORT:"+ PORT+"****")
 })
