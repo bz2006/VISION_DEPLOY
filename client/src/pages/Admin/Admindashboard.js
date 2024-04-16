@@ -5,6 +5,7 @@ import "./Admindashboard.css"
 
 
 const Admindashboard = () => {
+  var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
   return (
     <body className='body'>
       <div className="container-fluid ">

@@ -7,7 +7,7 @@ import Featuredproducts from './featuredproducts.js';
 
 function HomePage() {
     const [auth] = useAuth()
-    var mainUrl = window.location.protocol + "//" + window.location.host;
+    var hosturl = window.location.protocol + "//" + window.location.host+"/uploads/"
     return (
         <Layout>
             <>

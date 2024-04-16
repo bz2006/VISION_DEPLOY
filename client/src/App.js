@@ -28,7 +28,7 @@ import OrderDetails from "./pages/Admin/orderDetails";
 import YourAccount from "./pages/user/yourAccount";
 import UserOrderDetails from "./pages/user/userorderDetails";
 
-axios.defaults.baseURL = "http://43.205.242.76"
+axios.defaults.baseURL = "http://13.201.84.101"
 axios.defaults.withCredentials = true
 
 
