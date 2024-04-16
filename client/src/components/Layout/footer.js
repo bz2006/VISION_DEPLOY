@@ -15,6 +15,7 @@ const Footer = () => {
       const { data } = await axios.get("/api/v1/users/get-category");
       if (data.success) {
         setCategories(data.category);
+        
 
       }
     } catch (error) {
@@ -42,7 +43,7 @@ const Footer = () => {
             
               {categories.map(c => (
                 <div className='cont1' key={c._id}>
-                  <a onClick={() => {  navigate(`/shop/${c._id}`) }} style={{ textDecoration: "none", color: "black",cursor:"pointer"  }} className='mobnav'>{c.name}</a>
+                  <a onClick={() => {  navigate(`/shop/${c._id}`) }} style={{ textDecoration: "none", color: "black",cursor:"pointer" }} className='mobnav'>{c.name}</a>
                 </div>
               ))}
           </Col>

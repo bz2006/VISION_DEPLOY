@@ -19,8 +19,10 @@ const CartProvider = ({ children }) => {
       const combinedCart = combineCartItems(cart);
       setCart(combinedCart);
       setCartLen(cart.length)
+      syncCartWithServer();
     }
     localStorage.setItem("cart", JSON.stringify(cart));
+    syncCartWithServer();
     //eslint-disable-next-line
   }, [cart]);
 
@@ -29,9 +31,9 @@ const CartProvider = ({ children }) => {
     } else {
 
       if (perm === 0) {
-        setPerm(1); 
+
         if (cart.length === 0) {
-          getCart(); 
+          getCart();
         } else {
           syncCartWithServer();
         }
@@ -39,7 +41,7 @@ const CartProvider = ({ children }) => {
       if (cart.length > cartlen) {
 
 
-
+console.log("kjhig")
         syncCartWithServer()
       }
 
@@ -51,7 +53,7 @@ const CartProvider = ({ children }) => {
   const combineCartItems = (cartItems) => {
     const combiner = [];
     const ids = [];
-
+    console.log("cart", cart)
     for (let v of cartItems) {
       if (!ids.includes(v[0])) {
         ids.push(v[0]);
@@ -65,23 +67,79 @@ const CartProvider = ({ children }) => {
       }
     }
     return combiner;
+
+  };
+
+  const servercombineCartItems = (cartItems) => {
+    const combiner = [];
+    const ids = [];
+    const delid=[]
+    for (let v of cartItems[0]) {
+      if (!ids.includes(v[0])) {
+        ids.push(v[0]);
+        combiner.push(v);
+      } else {
+        for (let index in combiner) {
+          let c = combiner[index];
+          if (v[0] === c[0]) {
+            if (c[5] >= v[5]) {
+              combiner[index] = v;
+              c[5] = c[5] + 1;
+            } else {
+              c[5] = c[5] + 1;
+            }
+          } else{
+            combiner.slice(index,1)
+          }
+
+        }
+
+      }
+    }
+    return combiner;
+
   };
 
   const syncCartWithServer = async () => {
     try {
-      // Assuming your server expects cart data in a specific format
       const cartData = { items: [] };
-      for (let arr of cart) {
-        cartData.items.push({
-          product: arr[0],
-          name: arr[1],
-          image: arr[2],
-          mrp: arr[3],
-          quantity: arr[4]
 
-        });
+      const cartServer = await getCart()
+      if (cartServer.length !== 0) {
+        
+        let updatedCart = [cartServer, cart];
+        const mergedCart = [updatedCart[0].concat(updatedCart[1])]
+        const combinedCart = servercombineCartItems(mergedCart);
+        for (let arr of combinedCart) {
+          cartData.items.push({
+            product: arr[0],
+            name: arr[1],
+            image: arr[2],
+            mrp: arr[3],
+            quantity: arr[4],
+            updated: arr[5]
+
+          });
+        }
+        await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+        console.log("synced with cart sevfgdfrver")
+      } else {
+        for (let arr of cart) {
+          cartData.items.push({
+            product: arr[0],
+            name: arr[1],
+            image: arr[2],
+            mrp: arr[3],
+            quantity: arr[4],
+            updated: arr[5]
+
+          });
+        }
+
+        await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+        console.log("synced with cart sevrver")
       }
-      await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+
     } catch (error) {
     }
   };
@@ -90,7 +148,6 @@ const CartProvider = ({ children }) => {
   const getCart = async () => {
     try {
       const { data } = await axios.get(`/api/v1/cart/get-cart/${auth.user._id}`);
-
       const newdata = [];
       for (let arr of data) {
         for (let dat of arr["items"]) {
@@ -99,12 +156,15 @@ const CartProvider = ({ children }) => {
             dat["name"],
             dat["image"],
             dat["mrp"],
-            dat["quantity"]]
+            dat["quantity"],
+            dat["updated"]]
           newdata.push(darray)
 
         }
       }
-      setCart(newdata)
+      if (perm === 0) { setCart(newdata); setPerm(1); }
+      return newdata
+
     } catch (error) {
 
     }

@@ -85,11 +85,11 @@ const ProductPage = () => {
                             }}
                         />
                         <button className="addtc" onClick={() => {
-                            const finalqty = [pid, name, images, mrp, Quantity];
+                            const finalqty = [pid, name, images, mrp, Quantity,0];
                             setCart([...cart, finalqty]);
                         }}>Add to Cart</button><br />
                         <button className="buy" onClick={() => {
-                            const finalqty = [pid, name, images, mrp, Quantity];
+                            const finalqty = [pid, name, images, mrp, Quantity,0];
                             setCart([...cart, finalqty]);
                             navigate("/cart")
                         }}>Buy Now</button>
@@ -102,7 +102,6 @@ const ProductPage = () => {
             </div>
 
             <div className="spdiv">
-                <h1>hai</h1>
                 <Row xs={1} md={2} className="g-4 row row-cols-md-2 row-cols-1">
                     <Col className="colone">
                         <img src={hosturl+selectedImage} alt="" style={{ width: "80%" }}></img>
@@ -138,11 +137,12 @@ const ProductPage = () => {
                             }}
                         />
                         <button className="addtc" onClick={() => {
-                            const finalqty = [pid, name, images, mrp, Quantity];
+                            const finalqty = [pid, name, images, mrp, Quantity,0];
+                            console.log(finalqty)
                             setCart([...cart, finalqty]);
                         }}>Add to Cart</button><br />
                         <button className="buy" onClick={() => {
-                            const finalqty = [pid, name, images, mrp, Quantity];
+                            const finalqty = [pid, name, images, mrp, Quantity,0];
                             setCart([...cart, finalqty]);
                             navigate("/cart")
                         }}>Buy Now</button>

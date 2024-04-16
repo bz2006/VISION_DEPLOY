@@ -1,16 +1,20 @@
 import express from "express";
-import multer from "multer";
-import { useraddress } from "../controllers/usersController.js";
+import { Forgotpass } from "../controllers/usersController.js";
 import { isAdmin, requireSignup } from "../middlewares/authMiddleware.js";
-import { 
+import {
   getAllUsers,
-  getalladdress, 
+  getalladdress,
   setDefaultadrs,
   updateuseraddress,
   deleteuseraddress,
-  updateUserOrdersno} from "../controllers/usersController.js";
-  import { categoryControlller } from "../controllers/categoryController.js";
-// const upload = multer({ storage })
+  updateUserOrdersno,
+  getUserById,
+  updateUsername,
+  useraddress,
+  UpdatePass
+} from "../controllers/usersController.js";
+import { categoryControlller } from "../controllers/categoryController.js";
+
 
 const router = express.Router();
 
@@ -21,30 +25,38 @@ const router = express.Router();
 
 // User Routes ----------------------------------
 
+router.get("/get-user/:id", requireSignup, getUserById);
+
+router.post("/update-username/:id", requireSignup, updateUsername);
+
+router.post("/update-pass/:id", requireSignup, UpdatePass);
+
+router.post("/forgot-pass/:email", Forgotpass);
+
 router.post(
   "/update-user/:id",
-  requireSignup,useraddress
+  requireSignup, useraddress
 
 );
 
 router.put(
   "/update-user-adrs/:id",
-  requireSignup,updateuseraddress
+  requireSignup, updateuseraddress
 
 );
 
-router.get("/get-category",  categoryControlller);
+router.get("/get-category", categoryControlller);
 
 
 router.put(
   "/user_ordersno/:id",
-  requireSignup,updateUserOrdersno
+  requireSignup, updateUserOrdersno
 
 );
 
 router.post(
   "/delete-user-adrs/:id",
-  requireSignup,deleteuseraddress
+  requireSignup, deleteuseraddress
 
 );
 
@@ -53,7 +65,7 @@ router.get("/getall-address/:id", requireSignup, getalladdress);
 
 router.post(
   "/user-def-adres/:id",
-  requireSignup,setDefaultadrs
+  requireSignup, setDefaultadrs
 
 );
 

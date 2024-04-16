@@ -27,7 +27,7 @@ const Dashboard = () => {
                         </a>
                     </Col>
                     <Col >
-                        <a href="/" style={{ textDecoration: "none", color: "black" }}>
+                        <a href='my_account/login-security' style={{ textDecoration: "none", color: "black" }}>
                             <div className='btns d-flex align-items-center'>
                                 <div className='column'>
                                     <FontAwesomeIcon icon={faLock} size='3x' style={{ color: "#01403F" }} />

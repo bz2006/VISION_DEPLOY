@@ -4,20 +4,16 @@ import morgan from "morgan";
 import connectdb from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
 import cors from "cors"
-import categoryRoute from "./routes/categoryRoute.js"
 import bodyParser from 'body-parser';
+import categoryRoute from "./routes/categoryRoute.js"
 import razorpayRoutes from "./routes/rzppaymentRoute.js"
 import productRoute from "./routes/productRoute.js"
 import usersRoute from "./routes/usersRoute.js"
 import cartRoute from "./routes/cartRoute.js"
-import OrderRoutes from "./routes/orderRoute.js"
-import path from "path";
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { sendEmail } from "./middlewares/nodemailerMiddleware.js";
-import { sendwelcomemail } from "./middlewares/nodemailerMiddleware.js";
-
-dotenv.config();
+import OrderRoutes from "./routes/orderRoute.js";
+import { sendwelcomemail, sendEmail ,sendOTP} from "./middlewares/nodemailerMiddleware.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'client', 'public')));
 
 app.post('/send-email', sendEmail);
 app.post('/send-welcome-mail', sendwelcomemail);
+app.post('/send-verification', sendOTP);
 
 // Serve the React frontend
 app.get('*', (req, res) => {
@@ -54,5 +51,9 @@ const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log('****Server Started on '+process.env. DEV_MODE +" Mode PORT:"+ PORT+"****")
 })
+
+
+
+
 
  

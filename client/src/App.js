@@ -25,9 +25,10 @@ import ProductPage from "./pages/productpage";
 import CartPage from "./pages/cartPage";
 import Checkout from "./pages/user/checkout"
 import OrderDetails from "./pages/Admin/orderDetails";
+import YourAccount from "./pages/user/yourAccount";
 import UserOrderDetails from "./pages/user/userorderDetails";
 
-axios.defaults.baseURL = "http://localhost:3000"
+axios.defaults.baseURL = "http://43.205.242.76"
 axios.defaults.withCredentials = true
 
 
@@ -51,6 +52,7 @@ function App() {
             <Route path="my_account/your-orders" element={<Yourorders />} />
             <Route path="my_account/your-address" element={<Youraddress />} />
             <Route path="my_account/your-orders/order/:id" element={<UserOrderDetails />} />
+            <Route path="my_account/login-security" element={<YourAccount />} />
           </Route>
           <Route path="/order" element={<PrivateRoute />}>
             <Route path="checkout-order" element={<Checkout />} />

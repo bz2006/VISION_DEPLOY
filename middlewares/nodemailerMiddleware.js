@@ -1,19 +1,18 @@
 import nodemailer from 'nodemailer';
 
-
 export const sendEmail = (req, res) => {
   const { name, email, message } = req.body;
   const transporter = nodemailer.createTransport({
-    service: 'gmail', 
     host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+    service: 'gmail',
+    port: 465,
+    secure: true,
     auth: {
-      user: 'bz.devoloper@gmail.com', 
-      pass: 'tyzm ubrw sxga mgis' 
+      user: "bz.devoloper@gmail.com",
+      pass: "kfwa idol wgig sepv"
     }
   });
-  
+
   const layout = `
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -403,19 +402,23 @@ export const sendEmail = (req, res) => {
 
 </html>
 `;
+
+
   const mailOptions = {
-    from: email, 
-    to: "bz.devoloper@gmail.com", 
-    subject: `Message from ${name}`, 
-    text: message ,
+    from: email,
+    to: "bz.devoloper@gmail.com",
+    subject: `Message from ${name}`,
+    text: message,
     html: layout
   };
 
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
+      console.log(error)
       res.status(500).json({ success: false, message: 'Error sending email' });
     } else {
-      
+
       res.json({ success: true, message: 'Email sent successfully' });
     }
   });
@@ -424,18 +427,18 @@ export const sendEmail = (req, res) => {
 
 
 export const sendwelcomemail = (req, res) => {
-  const { name, email  } = req.body;
+  const { name, email } = req.body;
   const transporter = nodemailer.createTransport({
-    service: 'gmail', 
     host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+    service: 'gmail',
+    port: 465,
+    secure: true,
     auth: {
-      user: 'bz.devoloper@gmail.com', 
-      pass: 'tyzm ubrw sxga mgis' 
+      user: "bz.devoloper@gmail.com",
+      pass: "kfwa idol wgig sepv"
     }
   });
-  
+
   const layout = `
   <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
@@ -845,10 +848,11 @@ export const sendwelcomemail = (req, res) => {
   </body>
   
   </html>`;
+
   const mailOptions = {
-    from: "bz.devoloper@gmail.com", 
-    to: email, 
-    subject: `Welcome ${name} to VISION Quartz Community`, 
+    from: "bz.devoloper@gmail.com",
+    to: email,
+    subject: `Welcome ${name} to VISION Quartz Community`,
     html: layout
   };
 
@@ -862,3 +866,33 @@ export const sendwelcomemail = (req, res) => {
 };
 
 
+export const sendOTP = (req, res) => {
+  const { OTP, Email } = req.body;
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    service: 'gmail',
+    port: 465,
+    secure: true,
+    auth: {
+      user: "bz.devoloper@gmail.com",
+      pass: "kfwa idol wgig sepv"
+    }
+  });
+
+
+
+  const mailOptions = {
+    from: "bz.devoloper@gmail.com",
+    to: Email,
+    subject: "Your One Time Password for password change - VISION QUARTZ",
+    text: `Your One Time Password is ----  ${OTP}  ------`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      res.status(500).json({ success: false, message: 'Error sending email' });
+    } else {
+      res.json({ success: true, message: 'Email sent successfully' });
+    }
+  });
+};

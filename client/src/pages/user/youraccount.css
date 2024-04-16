@@ -1,0 +1,68 @@
+.accntdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family:"Rubik";
+    width: 100%;
+}
+
+.accpdet {
+    border: 1px solid #000000;
+    padding: 30px;
+    min-height: 200px;
+    min-width: 700px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.chbtn{
+    background-color: #005580;
+    color: #ffffff;
+    border-radius: 5px;
+height: 45px;
+border:none;
+margin-left: 90px;
+}
+.adrbtn{
+    background-color: #005580;
+    color: #ffffff;
+    border-radius: 5px;
+height: 45px;
+border:none;
+width: 30%;
+}
+.verbtn{
+    background-color: #005580;
+    color: #ffffff;
+    border-radius: 5px;
+height: 45px;
+margin-top: 15px;
+border:none;
+width: 70%;
+}
+#no-spin::-webkit-inner-spin-button,
+#no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#no-spin {
+    /* Firefox */
+    -moz-appearance: textfield;
+    appearance: none;
+}
+.otp-area{
+    width: fit-content;
+    margin: 20px auto;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    input{
+        width: 50px;
+        padding: 10px;
+        display: block;
+        border:1px solid;
+        margin-left: 10px;
+        text-align: center;
+        
+    }
+}
+

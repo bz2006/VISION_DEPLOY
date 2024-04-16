@@ -16,55 +16,103 @@ function CartPage() {
     const [qty, setQty] = useState(0);
     const [amount, setAmount] = useState(0);
     const navigate = useNavigate()
+    let perm = 0
+    let updatedCart =[]
     useEffect(() => {
         let totalQuantity = cart.reduce((acc, cartItem) => acc + cartItem[4], 0);
         let totalAmount = cart.reduce((acc, cartItem) => acc + cartItem[3] * cartItem[4], 0);
         setQty(totalQuantity);
         setAmount(totalAmount);
-    }, [cart]);
+            }, [cart]);
 
 
 
     const handleDelete = async (productId) => {
-        const updatedCart = cart.filter(item => item[0] !== productId);
+        updatedCart = cart.filter(item => item[0] !== productId);
         setCart(updatedCart);
+        console.log("updatcrta",updatedCart)
+
         if (auth.user) {
 
-            if (updatedCart.length === 0) {
-                await axios.delete(`/api/v1/cart//delete-cart/${auth.user._id}`);
-                syncCartWithServer(updatedCart)
-            }
-            else if (cart.length === 0) {
-                getCart()
-            }
-        }
+            await axios.delete(`/api/v1/cart/delete-cart/${auth.user._id}`);
+            syncdelete(updatedCart)
 
+        }
 
     };
 
-    const getCart = async () => {
-        try {
-            const { data } = await axios.get(`/api/v1/cart/get-cart/${auth.user._id}`);
-
-            const newdata = [];
-            for (let arr of data) {
-                for (let dat of arr["items"]) {
-                    const darray = [
-                        dat["product"],
-                        dat["name"],
-                        dat["image"],
-                        dat["mrp"],
-                        dat["quantity"]]
-                    newdata.push(darray)
-
+    const servercombineCartItems = (cartItems) => {
+        const combiner = [];
+        const ids = [];
+        const delid = []
+        for (let v of cartItems[0]) {
+            if (!ids.includes(v[0])) {
+                ids.push(v[0]);
+                combiner.push(v);
+            } else {
+                for (let index in combiner) {
+                    let c = combiner[index];
+                    if (v[0] === c[0]) {
+                        if (c[5] > v[5]) {
+                            combiner[index] = v;
+                            c[5] = c[5] + 1;
+                        } else {
+                            c[5] = c[5] + 1;
+                        }
+                    }
                 }
-            }
-            setCart(newdata)
-        } catch (error) {
 
+            }
         }
-    }
-    const syncCartWithServer = async (upcart) => {
+        return combiner;
+
+    };
+
+    const syncCartWithServer = async () => {
+        try {
+            const cartData = { items: [] };
+
+            const cartServer = await getCart()
+            if (cartServer.length !== 0) {
+                let updatedCart = [cartServer, cart];
+                const mergedCart = [updatedCart[0].concat(updatedCart[1])]
+                const combinedCart = servercombineCartItems(mergedCart);
+                console.log("combi",combinedCart)
+                for (let arr of combinedCart) {
+                    cartData.items.push({
+                        product: arr[0],
+                        name: arr[1],
+                        image: arr[2],
+                        mrp: arr[3],
+                        quantity: arr[4],
+                        updated: arr[5]
+
+                    });
+                }
+                await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+                localStorage.setItem("cart", JSON.stringify(combinedCart));
+                console.log("synced with server cart sevrver")
+            } else {
+                for (let arr of updatedCart) {
+                    cartData.items.push({
+                        product: arr[0],
+                        name: arr[1],
+                        image: arr[2],
+                        mrp: arr[3],
+                        quantity: arr[4],
+                        updated: arr[5]
+
+                    });
+                }
+console.log("dataaaa",cartData)
+                await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+                console.log("synced with cart ")
+            }
+
+        } catch (error) {
+        }
+    };
+    const syncdelete = async (upcart) => {
         try {
             // Assuming your server expects cart data in a specific format
             const cartData = { items: [] };
@@ -79,9 +127,36 @@ function CartPage() {
                 });
             }
             await axios.put(`/api/v1/cart/create-up-cart/${auth.user._id}`, cartData);
+            console.log("Cart synced with server successfully in cart page.");
         } catch (error) {
+            console.error("Error syncing cart with server:", error);
         }
     };
+    const getCart = async () => {
+        try {
+            const { data } = await axios.get(`/api/v1/cart/get-cart/${auth.user._id}`);
+            const newdata = [];
+            for (let arr of data) {
+                for (let dat of arr["items"]) {
+                    const darray = [
+                        dat["product"],
+                        dat["name"],
+                        dat["image"],
+                        dat["mrp"],
+                        dat["quantity"],
+                        dat["updated"]]
+                    newdata.push(darray)
+
+                }
+            }
+            console.log("getttt")
+            if (perm === 0) { setCart(newdata); perm=1; }
+            return newdata
+
+        } catch (error) {
+
+        }
+    }
 
     const HandleCheckout = async () => {
         if (auth.user) {
@@ -96,7 +171,7 @@ function CartPage() {
     return (
         <Layout >
             <div style={{ backgroundColor: "rgb(236, 239, 243)" }}>
-                <div style={{padding:"20px"}}><h2 style={{ fontFamily: "Rubik", fontWeight: "400" }}>Shopping Cart</h2></div>
+                <div style={{ padding: "20px" }}><h2 style={{ fontFamily: "Rubik", fontWeight: "400" }}>Shopping Cart</h2></div>
 
                 {cart.length !== 0 ? (
                     <>
@@ -106,7 +181,7 @@ function CartPage() {
                                     <table style={{ width: "100%" }}>
                                         <thead>
                                             <tr>
-                                                <th style={{ borderTopLeftRadius: "17px", backgroundColor: "white",color:"black"}}>My Cart</th>
+                                                <th style={{ borderTopLeftRadius: "17px", backgroundColor: "white", color: "black" }}>My Cart</th>
                                                 <th style={{ backgroundColor: "white" }}></th>
                                                 <th style={{ backgroundColor: "white" }}></th>
                                                 <th style={{ borderTopRightRadius: "17px", backgroundColor: "white" }}></th>
@@ -145,8 +220,8 @@ function CartPage() {
                                             <tr>
                                                 <th style={{ borderBottomLeftRadius: "17px", backgroundColor: "white", height: "80px" }}></th>
                                                 <th style={{ backgroundColor: "white", height: "80px" }}></th>
-                                                <th style={{ backgroundColor: "white", height: "80px" ,color:"black" }}> Subtotal ({qty} Items) :</th>
-                                                <th style={{ borderBottomRightRadius: "17px", backgroundColor: "white", fontSize: "larger",fontFamily: "Rubik", height: "80px" ,color:"black"}}>₹{amount}.00</th>
+                                                <th style={{ backgroundColor: "white", height: "80px", color: "black" }}> Subtotal ({qty} Items) :</th>
+                                                <th style={{ borderBottomRightRadius: "17px", backgroundColor: "white", fontSize: "larger", fontFamily: "Rubik", height: "80px", color: "black" }}>₹{amount}.00</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -189,7 +264,7 @@ function CartPage() {
                                                 setCart(updatedCart);
                                             }}
                                         >
-                                            {[...Array(10)].map((_, index) => ( 
+                                            {[...Array(10)].map((_, index) => (
                                                 <option key={index + 1} value={index + 1}>{index + 1}</option>
                                             ))}
                                         </select>

@@ -289,7 +289,7 @@ const Checkout = () => {
                             <tbody>
                                 {cart.length > 0 && cart.map(cartItem => (
                                     <tr key={cartItem[0]} >
-                                        <td style={{ height: "100px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={`http://localhost:3000/uploads/${cartItem[2][0]}`} alt="" style={{ width: "70px" }}></img></td>
+                                        <td style={{ height: "100px", fontSize: "larger", fontFamily: "Rubik", backgroundColor: "white" }}><img src={hosturl+cartItem[2][0]} alt="" style={{ width: "70px" }}></img></td>
                                         <td style={{ height: "100px", fontSize: "small", fontFamily: "Rubik", backgroundColor: "white" }}>{cartItem[1]}  <br />MRP : ₹{cartItem[3]}.00 </td>
                                         <td style={{ height: "100px", fontSize: "small", fontFamily: "Rubik", backgroundColor: "white" }}><input
                                             type="number"

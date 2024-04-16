@@ -65,6 +65,7 @@ export const categoryControlller = async (req, res) => {
       success: true,
       message: "All Categories List",
       category,
+
     });
   } catch (error) {
     res.status(500).send({

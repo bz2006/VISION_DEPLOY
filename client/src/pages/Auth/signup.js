@@ -17,8 +17,6 @@ function Signup() {
   const redirectUrl = sessionStorage.getItem("redirectUrl");
   const formdata = {};
 
-
-
   const welcomeMail = async () => {
     try {
       const response = await fetch('/send-welcome-mail', {
@@ -35,6 +33,7 @@ function Signup() {
       
     }
   };
+ 
 
   const signupf = async (e) => {
     e.preventDefault()
