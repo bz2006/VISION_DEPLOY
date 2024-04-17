@@ -5,6 +5,7 @@ import connectdb from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
 import cors from "cors"
 import bodyParser from 'body-parser';
+import path from 'path';
 import categoryRoute from "./routes/categoryRoute.js"
 import razorpayRoutes from "./routes/rzppaymentRoute.js"
 import productRoute from "./routes/productRoute.js"
@@ -47,7 +48,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 export { __dirname };
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log('****Server Started on '+process.env. DEV_MODE +" Mode PORT:"+ PORT+"****")
 })
